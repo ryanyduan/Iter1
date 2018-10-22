@@ -7,7 +7,7 @@ public class Player extends Observer {
 	private String playerType;
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
-	private ArrayList<ArrayList<Tile>> sets;
+	public ArrayList<ArrayList<Tile>> sets;
 	private ArrayList<Tile> optimalMove;
 
 	public Player(String type, Table table) {
@@ -100,6 +100,23 @@ public class Player extends Observer {
 		}
 		
 		return optimalMove;
+	}
+	
+	
+	public boolean isRun(ArrayList<Tile> tryRun) {
+		
+		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
+		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
+		
+		int tryRunSum = 0;
+		for (Tile t: tryRun) {
+			tryRunSum += t.getRank();
+		}
+		
+		if ((tryRun.size() / 2) * (2*tryRun.get(0).getRank() + (tryRun.size()-1)) != tryRunSum) return false;
+		
+		return true;
+		
 	}
 	
 	public String displayHand(){
