@@ -138,7 +138,6 @@ public class PlayerFindMeldsTest extends TestCase {
 	}
 	
 	public void testMultipleSetsWithProperComparableTile() {
-		Table test = new Table();
 		Player player = new Player("Human", test);
 		
 		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
@@ -184,8 +183,35 @@ public class PlayerFindMeldsTest extends TestCase {
 		testSets.add(testSet3);
 		assertEquals(testSets, player.findSets());
 		
-		
-		
-		
 	}
+	
+	public void testOptimalMove2Melds() {
+		Player player = new Player("Human", test);
+		player.Hand.add(B1);
+		player.Hand.add(B2);
+		player.Hand.add(B3);
+		player.Hand.add(B5);
+		player.Hand.add(G5);
+		player.Hand.add(O5);
+		player.Hand.add(R5);
+		
+		player.findRuns();
+		player.findSets();
+		
+		ArrayList<Tile> optimalMove = new ArrayList<Tile>();
+		optimalMove.add(B5);
+		optimalMove.add(G5);
+		optimalMove.add(O5);
+		optimalMove.add(R5);
+		assertEquals(optimalMove, player.optimalMove());
+	}
+	
+	Table test = new Table();
+	Tile B1 = new Tile('B',1);
+	Tile B2 = new Tile('B', 2);
+	Tile B3 = new Tile('B',3);
+	Tile B5 = new Tile('B',5);
+	Tile O5 = new Tile('O',5);
+	Tile G5 = new Tile('G',5);
+	Tile R5 = new Tile('R',5);
 }

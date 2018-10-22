@@ -81,6 +81,8 @@ public class Player extends Observer {
 		return sets;
 	}
 	
+	public ArrayList
+	
 	public String displayHand(){
 		String returnHand = "";
 		for (Tile t: this.Hand) {

@@ -1,6 +1,7 @@
 package iteration1;
 
 public class Tile implements Comparable<Tile> {
+	
 	private char colour;
 	private int rank;
 	private boolean justPlayed = false;
