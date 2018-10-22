@@ -206,6 +206,21 @@ public class PlayerFindMeldsTest extends TestCase {
 		assertEquals(optimalMove, player.optimalMove());
 	}
 	
+	public void testOptimalMove0Melds() {
+		Player player = new Player("Human", test);
+		player.Hand.add(B1);
+		player.Hand.add(B2);
+		player.Hand.add(B5);
+		player.Hand.add(R5);
+		
+		player.findRuns();
+		player.findSets();
+		
+		ArrayList<Tile> optimalMove = new ArrayList<Tile>();
+		assertEquals(optimalMove, player.optimalMove());
+		
+	}
+	
 	Table test = new Table();
 	Tile B1 = new Tile('B',1);
 	Tile B2 = new Tile('B', 2);
