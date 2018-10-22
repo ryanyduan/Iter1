@@ -1,6 +1,7 @@
 package iteration1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class TileTest extends TestCase {
 		Tile B_two = new Tile('B',2);
 		player.Hand.add(B_two);
 		player.Hand.add(B_one);
-		player.Hand.shuffle();
+		Collections.shuffle(player.Hand);
 		
 		ArrayList<Tile> confirmationArray = new ArrayList<Tile>();
 		confirmationArray.add(B_two);
