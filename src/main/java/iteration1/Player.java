@@ -8,6 +8,7 @@ public class Player extends Observer {
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	private ArrayList<ArrayList<Tile>> sets;
+	private ArrayList<Tile> optimalMove;
 
 	public Player(String type, Table table) {
 		this.playerType = type;
@@ -55,7 +56,6 @@ public class Player extends Observer {
 		
 		sets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> matchedTiles = new ArrayList<Tile>();
-		char prevColour;
 		
 		for (Tile t: this.Hand) {
 			if (matchedTiles.contains(t)) continue; // if we've found a set using this tile, don't use it to find more sets
@@ -81,7 +81,26 @@ public class Player extends Observer {
 		return sets;
 	}
 	
-	public ArrayList
+	public ArrayList<Tile> optimalMove(){
+		optimalMove = new ArrayList<Tile>();
+		int optimalLength = 0;
+		
+		for (ArrayList<Tile> t: this.runs) {
+			if (t.size() > optimalLength) {
+				optimalLength = t.size();
+				optimalMove = t;
+			}
+		}
+		
+		for (ArrayList<Tile> t: this.sets) {
+			if (t.size() > optimalLength) {
+				optimalLength = t.size();
+				optimalMove = t;
+			}
+		}
+		
+		return optimalMove;
+	}
 	
 	public String displayHand(){
 		String returnHand = "";
