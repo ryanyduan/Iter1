@@ -31,13 +31,18 @@ public class Tile implements Comparable<Tile> {
 
 
 	public int compareTo(Tile nextTile) {
-		if (this.getRank() < nextTile.getRank()) return -1;
-		else if (this.getRank() > nextTile.getRank()) return 1;
+		if (this.getColour() < nextTile.getColour()) return -1;
+		else if (this.getColour() > nextTile.getColour()) return 1;
 		else {
-			if (this.getColour() < nextTile.getColour()) return -1;
-			else if (this.getColour() > nextTile.getColour()) return 1;
+			if (this.getRank() < nextTile.getRank()) return -1;
+			else if (this.getRank() > nextTile.getRank()) return 1;
 			return 0;
 		}
 		
 	}
+	
+	public String toString() {
+		return this.colour + Integer.toString(this.rank);
+	}
+	
 }
