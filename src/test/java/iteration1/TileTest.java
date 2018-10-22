@@ -73,5 +73,30 @@ public class TileTest extends TestCase {
 		
 		assertEquals(confirmationArray, player.Hand);
 	}
+	
+	public void testPrintHand() {
+		Table table = new Table();
+		Player player = new Player("Human", table);
+		Tile B_one_one = new Tile('B',1);
+		Tile B_one_two = new Tile('B',1);
+		Tile G_one_one = new Tile('G', 1);
+		Tile G_one_two = new Tile('G', 1);
+		Tile R_one_one = new Tile('R', 1);
+		Tile R_one_two = new Tile('R', 1);
+		Tile O_one_one = new Tile('O', 1);
+		Tile O_one_two = new Tile('O', 1);
+		player.Hand.add(B_one_two);
+		player.Hand.add(O_one_one);
+		player.Hand.add(B_one_one);
+		player.Hand.add(G_one_two);
+		player.Hand.add(R_one_one);
+		player.Hand.add(O_one_two);
+		player.Hand.add(R_one_two);
+		player.Hand.add(G_one_one);
+		Collections.sort(player.Hand);
+		
+		assertEquals("B1B1G1G1O1O1R1R1", player.displayHand());
+		
+	}
 
 }
