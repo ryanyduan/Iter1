@@ -11,19 +11,13 @@ public class Tile implements Comparable<Tile> {
 		this.rank = rank;
 	}
 	
-	
-
 	public char getColour() {
 		return colour;
 	}
 
-
-
 	public int getRank() {
 		return rank;
 	}
-
-
 
 	public void isJustPlayed() {
 		this.justPlayed = true;

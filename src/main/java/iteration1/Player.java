@@ -2,7 +2,7 @@ package iteration1;
 
 import java.util.ArrayList;
 
-public class Player extends Observer{
+public class Player extends Observer {
 	
 	private String playerType;
 	public ArrayList<Tile> Hand;
@@ -13,6 +13,7 @@ public class Player extends Observer{
 		this.playerType = type;
 		this.Hand = new ArrayList<Tile>();
 		this.table = table;
+		this.table.attach(this);
 	}
 
 	public ArrayList<ArrayList<Tile>> findRuns(){

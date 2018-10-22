@@ -2,6 +2,8 @@ package iteration1;
 
 import junit.framework.TestCase;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -132,6 +134,58 @@ public class PlayerFindMeldsTest extends TestCase {
 		
 		testSets.add(testSet3);
 		assertEquals(testSets, player.findSets());
+		
+	}
+	
+	public void testMultipleSetsWithProperComparableTile() {
+		Table test = new Table();
+		Player player = new Player("Human", test);
+		
+		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
+		ArrayList<Tile> testSet = new ArrayList<Tile>();
+		
+		Tile one = new Tile('O', 8);
+		Tile two = new Tile('G', 8);
+		Tile three = new Tile('B', 8);
+		Tile four = new Tile('G', 8);
+		Tile five = new Tile('R', 8);
+		Tile six = new Tile('O', 10);
+		Tile seven = new Tile ('G', 10);
+		Tile eight = new Tile('R', 10);
+		player.Hand.add(one);
+		player.Hand.add(two);
+		player.Hand.add(three);
+		player.Hand.add(four);
+		player.Hand.add(five);
+		player.Hand.add(six);
+		player.Hand.add(seven);
+		player.Hand.add(eight);
+		Collections.shuffle(player.Hand);
+		Collections.sort(player.Hand);
+		
+		testSet.add(three);
+		testSet.add(two);
+		testSet.add(one);
+		testSet.add(five);
+		testSets.add(testSet);
+		
+		ArrayList<Tile> testSet2 = new ArrayList<Tile>();
+		testSet2.add(four);
+		testSet2.add(three);
+		testSet2.add(one);
+		testSet2.add(five);
+		testSets.add(testSet2);
+		
+		ArrayList<Tile> testSet3 = new ArrayList<Tile>();
+		testSet3.add(seven);
+		testSet3.add(six);
+		testSet3.add(eight);
+		
+		testSets.add(testSet3);
+		assertEquals(testSets, player.findSets());
+		
+		
+		
 		
 	}
 }

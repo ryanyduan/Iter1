@@ -10,7 +10,8 @@ import junit.framework.TestCase;
 public class TileTest extends TestCase {
 
 	public void testCompare2Tiles() {
-		Player player = new Player();
+		Table test = new Table();
+		Player player = new Player("Human", test);
 		Tile B_one = new Tile('B', 1);
 		Tile B_two = new Tile('B',2);
 		player.Hand.add(B_two);
@@ -24,7 +25,8 @@ public class TileTest extends TestCase {
 	}
 	
 	public void testCompare3Tiles() {
-		Player player = new Player();
+		Table test = new Table();
+		Player player = new Player("Human", test);
 		Tile B_one = new Tile('B', 1);
 		Tile B_two = new Tile('B',2);
 		Tile O_one = new Tile('O', 1);
@@ -42,7 +44,8 @@ public class TileTest extends TestCase {
 	}
 	
 	public void test8Ones() {
-		Player player = new Player();
+		Table test = new Table();
+		Player player = new Player("Human", test);
 		Tile B_one_one = new Tile('B',1);
 		Tile B_one_two = new Tile('B',1);
 		Tile G_one_one = new Tile('G', 1);

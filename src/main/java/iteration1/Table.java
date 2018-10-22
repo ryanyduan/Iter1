@@ -2,7 +2,6 @@ package iteration1;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Table {
@@ -16,6 +15,7 @@ public class Table {
 		observers = new ArrayList<Observer>();
 		Deck = new ArrayList<Tile>();
 		Board = new ArrayList<ArrayList<Tile>>();
+		createDeck();
 	}
 	
 	public Tile draw() {
