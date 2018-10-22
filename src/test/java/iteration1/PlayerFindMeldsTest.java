@@ -2,6 +2,7 @@ package iteration1;
 
 import junit.framework.TestCase;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
@@ -221,10 +222,39 @@ public class PlayerFindMeldsTest extends TestCase {
 		
 	}
 	
+	public void testHardOptimalMove() {
+		Player player = new Player("Human", test);
+		player.Hand.add(B1);
+		player.Hand.add(B2);
+		player.Hand.add(B3);
+		player.Hand.add(R3);
+		player.Hand.add(O3);
+		player.Hand.add(G3);
+		
+		ArrayList<ArrayList<Tile>> optimalMoves = new ArrayList<ArrayList<Tile>>();
+		ArrayList<Tile> testMeld = new ArrayList<Tile>();
+		testMeld.add(B1);
+		testMeld.add(B2);
+		testMeld.add(B3);
+		ArrayList<Tile> testMeld2 = new ArrayList<Tile>();
+		testMeld2.add(G3);
+		testMeld2.add(O3);
+		testMeld2.add(R3);
+		optimalMoves.add(testMeld);
+		optimalMoves.add(testMeld2);
+		
+		player.findRuns();
+		player.findSets();
+		assertTrue(optimalMoves.contains(player.optimalMove()));
+	}
+	
 	Table test = new Table();
 	Tile B1 = new Tile('B',1);
 	Tile B2 = new Tile('B', 2);
 	Tile B3 = new Tile('B',3);
+	Tile R3 = new Tile('R',3);
+	Tile O3 = new Tile('O',3);
+	Tile G3 = new Tile('G',3);
 	Tile B5 = new Tile('B',5);
 	Tile O5 = new Tile('O',5);
 	Tile G5 = new Tile('G',5);
