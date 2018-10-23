@@ -20,9 +20,7 @@ public abstract class Player extends Observer {
 		}
 	}
 	
-	public void turn(){
-		System.out.println("Player " + this.name + "'s turn");
-	}
+	public abstract void turn();
 
 	public ArrayList<ArrayList<Tile>> findRuns(){
 		// reset possible runs 
