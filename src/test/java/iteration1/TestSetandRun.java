@@ -8,7 +8,7 @@ public class TestSetandRun extends TestCase {
 	
 	public void testRun() {
 		//this is testing a method that checks that if you remove a tile from a run, it still remains a run
-		Player player = new Player("Human",test);
+		Player player = new Player("Human",test ,"Human");
 		ArrayList<Tile> run = new ArrayList<Tile>();
 		player.runs = new ArrayList<ArrayList<Tile>>();
 		run.add(B1);
@@ -19,7 +19,7 @@ public class TestSetandRun extends TestCase {
 	}
 	
 	public void testRunMoreThan3Tiles() {
-		Player player = new Player("Human", test);
+		Player player = new Player("Human", test,"Human");
 		ArrayList<Tile> run = new ArrayList<Tile>();
 		player.runs = new ArrayList<ArrayList<Tile>>();
 		
@@ -33,7 +33,7 @@ public class TestSetandRun extends TestCase {
 	
 	public void testSet() {
 		
-		Player player = new Player("Human", test);
+		Player player = new Player("Human", test,"Human");
 		ArrayList<Tile> set = new ArrayList<Tile>();
 		player.sets = new ArrayList<ArrayList<Tile>>();
 		
