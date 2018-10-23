@@ -104,6 +104,8 @@ public class Player extends Observer {
 	
 	public boolean isRun(ArrayList<Tile> tryRun) {
 		
+		if (tryRun.size() < 3) return false;
+		
 		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
 		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
 
@@ -116,6 +118,11 @@ public class Player extends Observer {
 		
 		return true;
 		
+	}
+	
+	public boolean isSet(ArrayList<Tile> trySet) {
+		if(trySet.size() < 3) return false;
+		return true;
 	}
 	
 	public String displayHand(){
