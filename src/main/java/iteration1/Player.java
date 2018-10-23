@@ -84,7 +84,22 @@ public class Player extends Observer {
 		optimalMove = new ArrayList<Tile>();
 		int optimalLength = 0;
 		
+		if (this.runs.isEmpty()) return optimalMove;
+		
 		for (ArrayList<Tile> t: this.runs) {
+			optimalLength = t.size();
+			for (Tile tile: t) {
+				if (!this.sets.isEmpty()) {
+					for (ArrayList<Tile> set: this.sets) {
+						if (set.contains(tile)){
+							ArrayList<Tile> set_copy = new ArrayList<Tile>(set); //making a copy just in case remove() mutates the ArrayList
+							set_copy.remove(tile);
+							if (isSet(set_copy) && optimalLength < set_copy.size()+1) optimalLength += set_copy.size();
+						}
+					
+					}
+				}
+			}
 			if (t.size() > optimalLength) {
 				optimalLength = t.size();
 				optimalMove = t;

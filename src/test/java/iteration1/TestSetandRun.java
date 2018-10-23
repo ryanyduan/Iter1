@@ -41,8 +41,7 @@ public class TestSetandRun extends TestCase {
 		set.add(R1);
 		player.sets.add(set);
 		assertFalse(player.isSet(player.sets.get(0)));
-		
-
+	
 	}
 	
 	Table test = new Table();

@@ -6,7 +6,6 @@ public class Tile implements Comparable<Tile> {
 	private int rank;
 	private boolean justPlayed = false;
 	
-	
 	public Tile(char colour, int rank){
 		this.colour = colour;
 		this.rank = rank;
