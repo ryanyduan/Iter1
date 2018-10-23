@@ -1,10 +1,15 @@
 package iteration1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
 public class Tile implements Comparable<Tile> {
 	
 	private char colour;
 	private int rank;
 	private boolean justPlayed = false;
+	private static char[] colours = {'R','B','G','O'};
 	
 	public Tile(char colour, int rank){
 		this.colour = colour;
@@ -22,11 +27,21 @@ public class Tile implements Comparable<Tile> {
 	public void isJustPlayed() {
 		this.justPlayed = true;
 	}
+	
+	public int findIndex(char targetColour) {
+		int index = 0;
+		for (char c : colours) {
+			if (c == targetColour) return index;
+			else index++;
+		}
+		return 0;
+	}
 
 
 	public int compareTo(Tile nextTile) {
-		if (this.getColour() < nextTile.getColour()) return -1;
-		else if (this.getColour() > nextTile.getColour()) return 1;
+		
+		if (findIndex(this.getColour()) < findIndex(nextTile.getColour())) return -1;
+		else if (findIndex(this.getColour()) > findIndex(nextTile.getColour())) return 1;
 		else {
 			if (this.getRank() < nextTile.getRank()) return -1;
 			else if (this.getRank() > nextTile.getRank()) return 1;
