@@ -33,6 +33,15 @@ public class Table {
 		Collections.shuffle(Deck);
 	}
 	
+	public String displayBoard() {
+		String boardMelds = ""; 
+		for (ArrayList<Tile> meld : this.Board) {
+			boardMelds += "{" + meld.toString() + "}";
+		}
+		System.out.println(boardMelds);
+		return boardMelds;
+	}
+	
 	public void attach(Observer observer){
 	      observers.add(observer);	
 	   }

@@ -13,7 +13,7 @@ public class TestTable extends TestCase {
 		newMeld.add(B2);
 		newMeld.add(B3);
 		table.Board.add(newMeld);
-		assertEquals("{B1 B2 B3}", table.displayBoard());
+		assertEquals("{[B1 , B2 , B3 ]}", table.displayBoard());
 	}
 	
 	Tile B1 = new Tile('B',1);
