@@ -8,7 +8,7 @@ public class Tile implements Comparable<Tile> {
 	
 	private char colour;
 	private int rank;
-	private boolean justPlayed = false;
+	public boolean justPlayed = false;
 	private static char[] colours = {'R','B','G','O'};
 	
 	public Tile(char colour, int rank){
