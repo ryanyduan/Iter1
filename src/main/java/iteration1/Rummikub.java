@@ -17,14 +17,14 @@ public class Rummikub {
 		players[0] = human;
 		human.displayHand();
 		
-		while (!win) {
-			int counter = 0;
-			currentPlayer = players[counter];
-			currentPlayer.turn();
-			if (currentPlayer.Hand.isEmpty()) {
-				win = true;
-			}
-		}
+//		while (!win) {
+//			int counter = 0;
+//			currentPlayer = players[counter];
+//			currentPlayer.turn();
+//			if (currentPlayer.Hand.isEmpty()) {
+//				win = true;
+//			}
+//		}
 		return -1;
 	}
 	

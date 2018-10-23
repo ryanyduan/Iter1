@@ -166,6 +166,7 @@ public class Player extends Observer {
 		for (Tile t: this.Hand) {
 			returnHand += t.toString();
 		}
+		System.out.println(returnHand);
 		return returnHand;
 	}
 

@@ -51,7 +51,7 @@ public class Tile implements Comparable<Tile> {
 	}
 	
 	public String toString() {
-		return this.colour + Integer.toString(this.rank);
+		return this.colour + Integer.toString(this.rank) + " ";
 	}
 	
 }
