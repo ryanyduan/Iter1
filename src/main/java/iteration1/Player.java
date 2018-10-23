@@ -107,7 +107,7 @@ public class Player extends Observer {
 		
 		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
 		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
-		
+
 		int tryRunSum = 0;
 		for (Tile t: tryRun) {
 			tryRunSum += t.getRank();
