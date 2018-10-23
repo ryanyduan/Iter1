@@ -7,7 +7,7 @@ import java.util.List;
 public class Table {
 	
 	private static char[] COLORS = {'O','G','R','B'};
-	private ArrayList<Tile> Deck;
+	public ArrayList<Tile> Deck;
 	public ArrayList<ArrayList<Tile>> Board;
 	private List<Observer> observers;
 	
@@ -25,7 +25,9 @@ public class Table {
 	private void createDeck() {
 		for (int i = 1; i < 14; i++) {
 			for (char c: COLORS) {
-				Deck.add(new Tile(c, i));
+				for (int j = 0; j < 2; j++) {
+					Deck.add(new Tile(c, i));
+				}
 			}
 		}
 		Collections.shuffle(Deck);
