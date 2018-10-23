@@ -22,9 +22,8 @@ public class Player extends Observer {
 		}
 	}
 	
-	public ArrayList<Tile> turn(){
+	public void turn(){
 		System.out.println("Player " + this.name + "'s turn");
-		return Hand;
 	}
 
 	public ArrayList<ArrayList<Tile>> findRuns(){
