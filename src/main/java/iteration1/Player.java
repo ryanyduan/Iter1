@@ -5,16 +5,26 @@ import java.util.ArrayList;
 public class Player extends Observer {
 	
 	private String playerType;
+	private String name;
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
 	private ArrayList<ArrayList<Tile>> optimalMoves;
 
-	public Player(String type, Table table) {
+	public Player(String type, Table table, String name) {
 		this.playerType = type;
 		this.Hand = new ArrayList<Tile>();
 		this.table = table;
+		this.name = name;
 		this.table.attach(this);
+		for (int i = 0; i < 14; i++) {
+			this.Hand.add(this.table.draw());
+		}
+	}
+	
+	public ArrayList<Tile> turn(){
+		System.out.println("Player " + this.name + "'s turn");
+		return Hand;
 	}
 
 	public ArrayList<ArrayList<Tile>> findRuns(){

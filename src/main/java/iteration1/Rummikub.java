@@ -1,11 +1,17 @@
 package iteration1;
 
 public class Rummikub {
-
-	private int newGame() {
+	
+	Table table;
+	Player human;
+	
+	private boolean win = false;
+	
+	public int newGame() {
 		
-		Table table = new Table();
-		Player human = new Player("Human", table);
+		table = new Table();
+		human = new Player("Human", table, "Human");
+		human.displayHand();
 		
 		return -1;
 	}
