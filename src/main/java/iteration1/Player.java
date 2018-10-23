@@ -2,17 +2,15 @@ package iteration1;
 
 import java.util.ArrayList;
 
-public class Player extends Observer {
+public abstract class Player extends Observer {
 	
-	private String playerType;
 	private String name;
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
 	private ArrayList<ArrayList<Tile>> optimalMoves;
 
-	public Player(String type, Table table, String name) {
-		this.playerType = type;
+	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
 		this.table = table;
 		this.name = name;

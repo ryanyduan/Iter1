@@ -12,7 +12,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	
 	public void testRun(){
 		Table testTable = new Table();
-		Player player = new Player("Human" ,testTable,"Human");
+		Player player = new Human(testTable,"Human");
 		ArrayList<ArrayList<Tile>> testRuns = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> testRun = new ArrayList<Tile>();
 		Tile one = new Tile('O', 8);
@@ -61,7 +61,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	
 	public void testSet() {
 		Table testTable = new Table();
-		Player player = new Player("Human",testTable,"Human");
+		Player player = new Human(testTable,"Human");
 		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> testSet = new ArrayList<Tile>();
 		Tile one = new Tile('O', 8);
@@ -79,7 +79,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	
 	public void testNoSets() {
 		Table testTable = new Table();
-		Player player = new Player("Human",testTable,"Human");
+		Player player = new Human(testTable,"Human");
 		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> testSet = new ArrayList<Tile>();
 		Tile one = new Tile('O', 8);
@@ -96,7 +96,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	
 	public void testMultipleSets() {
 		Table testTable = new Table();
-		Player player = new Player("Human",testTable,"Human");
+		Player player = new Human(testTable,"Human");
 		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> testSet = new ArrayList<Tile>();
 		Tile one = new Tile('O', 8);
@@ -139,7 +139,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	}
 	
 	public void testMultipleSetsWithProperComparableTile() {
-		Player player = new Player("Human", test,"Human");
+		Player player = new Human(test,"Human");
 		
 		ArrayList<ArrayList<Tile>> testSets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> testSet = new ArrayList<Tile>();
@@ -187,7 +187,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	}
 	
 	public void testOptimalMove2Melds() {
-		Player player = new Player("Human", test,"Human");
+		Player player = new Human(test,"Human");
 		player.Hand.add(B1);
 		player.Hand.add(B2);
 		player.Hand.add(B3);
@@ -208,7 +208,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	}
 	
 	public void testOptimalMove0Melds() {
-		Player player = new Player("Human", test,"Human");
+		Player player = new Human(test,"Human");
 		player.Hand.add(B1);
 		player.Hand.add(B2);
 		player.Hand.add(B5);
@@ -223,7 +223,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	}
 	
 	public void testHardOptimalMove() {
-		Player player = new Player("Human", test,"Human");
+		Player player = new Human(test,"Human");
 		player.Hand.add(B1);
 		player.Hand.add(B2);
 		player.Hand.add(B3);

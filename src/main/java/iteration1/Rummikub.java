@@ -13,7 +13,7 @@ public class Rummikub {
 		
 		table = new Table();
 		players = new Player[4];
-		human = new Player("Human", table, "Human");
+		human = new Human("Human", table, "Human");
 		players[0] = human;
 		human.displayHand();
 		
