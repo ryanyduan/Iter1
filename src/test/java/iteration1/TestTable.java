@@ -31,6 +31,15 @@ public class TestTable extends TestCase {
 		
 	}
 	
+	public void testDisplay1MeldWithStars() {
+		Table table = new Table();
+		newMeld.add(B1);
+		newMeld.add(B2);
+		newMeld.add(B3);
+		table.Board.add(newMeld);
+		assertEquals("{[*B1 , *B2 , *B3 ]}", table.displayBoard());
+	}
+	
 	ArrayList<Tile> newMeld = new ArrayList<Tile>();
 	ArrayList<Tile> newMeld2 = new ArrayList<Tile>();
 	Tile B1 = new Tile('B',1);
