@@ -10,8 +10,8 @@ public class Rummikub {
 	public int newGame() {
 		
 		table = new Table();
-		human = new Player("Human", table, "Human");
-		human.displayHand();
+		//human = new Player("Human", table, "Human");
+		//human.displayHand();
 		
 		return -1;
 	}

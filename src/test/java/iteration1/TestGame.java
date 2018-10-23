@@ -11,7 +11,7 @@ public class TestGame extends TestCase {
 	
 	public void testSizeDeck() {
 		game.newGame();
-		assertEquals(106, game.table.Deck.size());
+		assertEquals(104, game.table.Deck.size());
 	}
 	
 	Rummikub game = new Rummikub();
