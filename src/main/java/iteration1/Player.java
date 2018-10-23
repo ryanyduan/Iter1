@@ -8,7 +8,7 @@ public class Player extends Observer {
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
-	private ArrayList<Tile> optimalMove;
+	private ArrayList<ArrayList<Tile>> optimalMoves;
 
 	public Player(String type, Table table) {
 		this.playerType = type;
@@ -80,40 +80,52 @@ public class Player extends Observer {
 		return sets;
 	}
 	
-	public ArrayList<Tile> optimalMove(){
-		optimalMove = new ArrayList<Tile>();
+	public int optimalMove(){
+		
+		optimalMoves = new ArrayList<ArrayList<Tile>>();
+		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
+		int currentLength = 0;
 		
-		if (this.runs.isEmpty()) return optimalMove;
+		if (this.runs.isEmpty()) return -1; // if no possible runs just return empty ArrayList
 		
-		for (ArrayList<Tile> t: this.runs) {
-			optimalLength = t.size();
-			for (Tile tile: t) {
-				if (!this.sets.isEmpty()) {
+		for (ArrayList<Tile> currentRun: this.runs) {
+			currentLength = currentRun.size();
+			
+			if (!this.sets.isEmpty()) {
+				for (Tile currentTile: currentRun) {
 					for (ArrayList<Tile> set: this.sets) {
-						if (set.contains(tile)){
+						if (set.contains(currentTile)){
 							ArrayList<Tile> set_copy = new ArrayList<Tile>(set); //making a copy just in case remove() mutates the ArrayList
-							set_copy.remove(tile);
-							if (isSet(set_copy) && optimalLength < set_copy.size()+1) optimalLength += set_copy.size();
+							set_copy.remove(currentTile);
+							if (!isSet(set_copy) && (currentLength + set_copy.size() > optimalLength)) {
+								ArrayList<Tile> run_copy = new ArrayList<Tile>(currentRun);
+								run_copy.remove(currentTile);
+								currentLength += set_copy.size();
+								currentOptimalMoves.add(set_copy);
+								currentOptimalMoves.add(run_copy);
+							}
 						}
-					
 					}
 				}
 			}
-			if (t.size() > optimalLength) {
-				optimalLength = t.size();
-				optimalMove = t;
+			
+			if (currentLength > optimalLength) {
+				optimalLength = currentLength;
+				optimalMoves = currentOptimalMoves;
 			}
 		}
 		
-		for (ArrayList<Tile> t: this.sets) {
-			if (t.size() > optimalLength) {
-				optimalLength = t.size();
-				optimalMove = t;
+		for (ArrayList<Tile> currentSet: this.sets) {
+			if (currentSet.size() > optimalLength) {
+				optimalLength = currentSet.size();
+				optimalMoves.clear();
+				optimalMoves.add(currentSet);
 			}
 		}
 		
-		return optimalMove;
+		return 1;
+		
 	}
 	
 	

@@ -1,0 +1,28 @@
+Implement Comparable interface for Tile
+	Progress: Done
+	Commits: 
+		- 636c74092d49a514d30d4cb258d4f7bb34403db6
+		- f7ddb840586dfdd90c66284aa0bbb208275a644d
+		- 5f494eaa7c89b51df0224183cc076f60bf2d7247
+
+Display Hand
+	Progress: Done
+	Commits: 
+		- 921cd303e1f86d148681b058a23a7856b40ffe4b
+		- 56f09a5b30aa4aa5f6422beff8aebec0f9047105
+
+Optimal Move
+	Progress: In progress
+	Commits: 
+		- 8d6ebfc3412aaa86c5ad8fab946574e4a7da0609
+		- 2de90ba1fef0dcb18b5f95882632df506455fb1f
+		- 47698e52d110a9e4f8d3b85403f914df6975154b
+
+Helper method for determining optimal move for situations where the optimal move isn’t necessarily the move the “longest” move
+	Progress: Done
+	Commits: 
+		- e2ec0292d6ce351ab306b5208eb23bacf500c715
+		- 07d01e1509a432ef5910531394946380e1dd8d7c
+		- b525d7c7e48869135cac66a51b960d8f81122366
+		- 4034b5a179e08f39469af3b3436e4a92cbae3333
+		- 756499be373d9531e945b55bbfb037a0df8e2c4e
