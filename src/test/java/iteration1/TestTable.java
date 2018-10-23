@@ -34,8 +34,11 @@ public class TestTable extends TestCase {
 	public void testDisplay1MeldWithStars() {
 		Table table = new Table();
 		newMeld.add(B1);
+		B1.isJustPlayed();
 		newMeld.add(B2);
+		B2.isJustPlayed();
 		newMeld.add(B3);
+		B3.isJustPlayed();
 		table.Board.add(newMeld);
 		assertEquals("{[*B1 , *B2 , *B3 ]}", table.displayBoard());
 	}

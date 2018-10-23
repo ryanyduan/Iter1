@@ -51,6 +51,7 @@ public class Tile implements Comparable<Tile> {
 	}
 	
 	public String toString() {
+		if (this.justPlayed) return "*" + this.colour + Integer.toString(this.rank) + " ";
 		return this.colour + Integer.toString(this.rank) + " ";
 	}
 	
