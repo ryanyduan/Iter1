@@ -49,7 +49,6 @@ public class Player extends Observer {
 			}
 		}
 		return runs;
-		
 	}
 	
 	public ArrayList<ArrayList<Tile>> findSets(){
