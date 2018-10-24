@@ -193,6 +193,25 @@ public class TestPlayerTurn extends TestCase {
 		assertEquals(table.Board, fakeBoard);
 	}
 	
+	public void testHasNextTurn() {
+		Human human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.clear();
+		human.Hand.add(B1);
+		human.Hand.add(B2);
+		human.Hand.add(B3);
+		human.Hand.add(R4);
+		human.Hand.add(G4);
+		human.Hand.add(O4);
+		human.Hand.add(G12);
+		human.Hand.add(B4);
+		human.Hand.add(R12);
+		human.Hand.add(O12);
+		Collections.sort(human.Hand);
+		
+		assertEquals(true, human.Turn());
+	}
+	
 	
 	
 	
