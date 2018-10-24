@@ -15,11 +15,8 @@ public class TestGame extends TestCase {
 	public void testGameEnd() {
 		
 		Rummikub.main(null);
-
-		Rummikub.currentPlayer.Hand.clear();
-		Rummikub.currentPlayer.Hand.add(B11);
-		Rummikub.currentPlayer.Hand.add(G11);
-		Rummikub.currentPlayer.Hand.add(O11);
+		
+		assertEquals(true, Rummikub.win);
 	}
 	
 	Tile B11 = new Tile('B',11);

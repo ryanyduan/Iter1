@@ -17,10 +17,10 @@ public abstract class Player extends Observer {
 		this.table = table;
 		this.name = name;
 		this.table.attach(this);
-		for (int i = 0; i < 14; i++) {
-			this.Hand.add(this.table.draw());
-		}
-		Collections.sort(this.Hand);
+//		for (int i = 0; i < 14; i++) {
+//			this.Hand.add(this.table.draw());
+//		}
+//		Collections.sort(this.Hand);
 	}
 	
 	public abstract boolean turn();
