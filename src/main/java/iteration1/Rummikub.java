@@ -34,6 +34,7 @@ public class Rummikub {
 				if (currentPlayer.Hand.isEmpty()) {
 					System.out.println(currentPlayer.getName() + " is the winner!");
 					win = true;
+					break;
 				}
 			}
 			counter++; //next player's turn
