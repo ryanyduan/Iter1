@@ -55,13 +55,12 @@ public class Human extends Player {
 			Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
 			while (!turnOptions.containsKey(choice)) {
-				System.out.println(turnOptions.keySet());
-				System.out.println("CHOICE" + choice);
 				System.out.println("Choose the number corresponding to the tiles you want to play.");
 				choice = scan.nextInt();
 			}
 			
 			table.Board.add(turnOptions.remove(choice));
+			this.is30 = true;
 		}
 		
 		else {
