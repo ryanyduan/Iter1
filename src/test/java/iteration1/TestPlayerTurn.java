@@ -1,5 +1,6 @@
 package iteration1;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import junit.framework.TestCase;
@@ -73,6 +74,30 @@ public class TestPlayerTurn extends TestCase {
 		human.turn();
 		human.choice = 0;
 		assertEquals(human.turnOptions.get(0), human.turnOptions.get(human.choice)); 
+	}
+	
+	public void test30() {
+		Human human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.add(B1);
+		human.Hand.add(B2);
+		human.Hand.add(B3);
+		human.Hand.add(R4);
+		human.Hand.add(G4);
+		human.Hand.add(O4);
+		human.Hand.add(G12);
+		human.Hand.add(B4);
+		human.Hand.add(R12);
+		human.Hand.add(O12);
+		Collections.sort(human.Hand);
+		human.turn();
+		
+		ArrayList<Tile> thirty = new ArrayList<Tile>();
+		thirty.add(R12);
+		thirty.add(G12);
+		thirty.add(O12);
+		
+		assertEquals(thirty, human.turnOptions.get(0));
 	}
 	
 	Table table = new Table();
