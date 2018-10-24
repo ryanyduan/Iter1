@@ -154,6 +154,45 @@ public class TestPlayerTurn extends TestCase {
 		
 	}
 	
+	public void testTwoTurns() {
+		Human human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.clear();
+		human.Hand.add(B1);
+		human.Hand.add(B2);
+		human.Hand.add(B3);
+		human.Hand.add(R4);
+		human.Hand.add(G4);
+		human.Hand.add(O4);
+		human.Hand.add(G12);
+		human.Hand.add(B4);
+		human.Hand.add(R12);
+		human.Hand.add(O12);
+		Collections.sort(human.Hand);
+		human.turn();
+		
+		ArrayList<ArrayList<Tile>> fakeBoard = new ArrayList<ArrayList<Tile>>();
+		ArrayList<Tile> humanTurn = new ArrayList<Tile>();
+		humanTurn.add(R12);
+		humanTurn.add(G12);
+		humanTurn.add(O12);
+		fakeBoard.add(humanTurn);
+		
+		assertEquals(table.Board, fakeBoard);
+		
+		ArrayList<Tile> humanTurn2 = new ArrayList<Tile>();
+	
+		humanTurn2.add(B1);
+		humanTurn2.add(B2);
+		humanTurn2.add(B3);
+		humanTurn2.add(B4);
+		fakeBoard.add(humanTurn2);
+		
+		
+		human.turn();
+		assertEquals(table.Board, fakeBoard);
+	}
+	
 	
 	
 	

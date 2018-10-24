@@ -17,6 +17,7 @@ public class Human extends Player {
 
 	@Override
 	public void turn() {
+		
 		runs = this.findRuns();
 		sets = this.findSets();
 		
@@ -70,7 +71,13 @@ public class Human extends Player {
 		}
 	}
 	
+	
+	
 	public void executeMove() {
+		
+		// Play the meld onto the board and also remove the correponding tiles from player's hand
+		// If player has just "broken" his rule about not being able to play until he has 30 points, the rule is now broken (is30 = true)
+		
 		played = turnOptions.remove(choice);
 		table.Board.add(played);
 		
@@ -85,7 +92,11 @@ public class Human extends Player {
 	}
 	
 	
+	
 	public int value(ArrayList<Tile> meld) {
+		
+		// Calculate the value of a meld
+		
 		int value = 0;
 		for (Tile t: meld) {
 			value += t.getRank();
@@ -93,7 +104,12 @@ public class Human extends Player {
 		return value;
 	}
 	
+	
+	
 	public void printMap(HashMap map) {
+		
+		// Print each of the player's possible melds he/she can play
+		
 	    Iterator it = map.entrySet().iterator();
 	    while (it.hasNext()) {
 	        HashMap.Entry pair = (HashMap.Entry)it.next();
