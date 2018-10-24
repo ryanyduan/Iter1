@@ -5,15 +5,10 @@ import junit.framework.TestCase;
 public class TestGame extends TestCase {
 	
 	public void testInitialHand() {
-		game.newGame();
-		assertEquals(14, game.human.Hand.size());
+		assertEquals(14, Rummikub.currentPlayer.Hand.size());
 	}
 	
 	public void testSizeDeck() {
-		game.newGame();
-		assertEquals(104, game.table.Deck.size());
+		assertEquals(104, Rummikub.table.Deck.size());
 	}
-	
-	Rummikub game = new Rummikub();
-
 }

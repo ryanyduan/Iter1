@@ -230,11 +230,7 @@ public class TestPlayerTurn extends TestCase {
 		
 		assertEquals(table.Board, fakeBoard);
 		assertFalse(human.turn());
-		
-		
 	}
-	
-	
 	
 	
 	Table table = new Table();

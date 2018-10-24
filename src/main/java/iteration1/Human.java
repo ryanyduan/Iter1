@@ -1,6 +1,7 @@
 package iteration1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -21,7 +22,13 @@ public class Human extends Player {
 		runs = this.findRuns();
 		sets = this.findSets();
 		
-		if (runs.isEmpty() && sets.isEmpty()) return false;
+		if (runs.isEmpty() && sets.isEmpty()) {
+			System.out.println("You draw a card since there are no tiles to play.");
+			this.draw();
+			this.displayHand();
+			Collections.sort(this.Hand);
+			return false;
+		}
 		
 		if (!this.is30) {
 			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
@@ -64,25 +71,30 @@ public class Human extends Player {
 			}
 			
 			executeMove();
-
 		}
 		
 		else {
 			System.out.println("You draw a card since there are no tiles to play.");
 			this.draw();
+			this.displayHand();
+			Collections.sort(this.Hand);
+			return false;
 		}
 		
 		return true;
 	}
 	
-	
-	
 	public void executeMove() {
 		
-		// Play the meld onto the board and also remove the correponding tiles from player's hand
+		// Play the meld onto the board and also remove the corresponding tiles from player's hand
 		// If player has just "broken" his rule about not being able to play until he has 30 points, the rule is now broken (is30 = true)
 		
 		played = turnOptions.remove(choice);
+		
+		for (Tile t: played) {
+			t.justPlayed = true;
+		}
+		
 		table.Board.add(played);
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
@@ -93,6 +105,13 @@ public class Human extends Player {
 		}
 		
 		this.is30 = true;
+		
+		Collections.sort(this.Hand);
+		this.displayHand();
+		table.displayBoard();
+		for (Tile t: played) {
+			t.justPlayed = false;
+		}
 	}
 	
 	

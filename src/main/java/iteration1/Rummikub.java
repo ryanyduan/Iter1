@@ -1,15 +1,15 @@
 package iteration1;
 
-public class Rummikub {
+public class Rummikub {	
 	
-	Table table;
-	Player human;
-	Player[] players;
-	Player currentPlayer;
-	
-	private boolean win = false;
-	
-	public int newGame() {
+	public static Table table;
+	public static Player human;
+	public static Player[] players;
+	public static Player currentPlayer;
+
+	public static void main(String[] args) {
+		
+		boolean win = false;
 		
 		table = new Table();
 		players = new Player[4];
@@ -17,16 +17,17 @@ public class Rummikub {
 		players[0] = human;
 		human.displayHand();
 		
-//		while (!win) {
-//			int counter = 0;
-//			currentPlayer = players[counter];
-//			currentPlayer.turn();
-//			if (currentPlayer.Hand.isEmpty()) {
-//				win = true;
-//			}
-//		}
-		return -1;
+		while (!win) {
+			int counter = 0;
+			currentPlayer = players[counter%4];
+			while (currentPlayer.turn()) { //this line will also execute the player's turn
+				if (currentPlayer.Hand.isEmpty()) {
+					System.out.println(currentPlayer.getName() + " is the winner!");
+					win = true;
+				}
+			}
+			counter++; //next player's turn
+		}
 	}
-	
-	
+		
 }

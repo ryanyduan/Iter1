@@ -34,7 +34,7 @@ public class Table {
 	}
 	
 	public String displayBoard() {
-		String boardMelds = ""; 
+		String boardMelds = "Board: "; 
 		for (ArrayList<Tile> meld : this.Board) {
 			boardMelds += "{" + meld.toString() + "}";
 		}

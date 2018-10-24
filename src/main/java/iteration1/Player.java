@@ -1,6 +1,7 @@
 package iteration1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class Player extends Observer {
 	
@@ -19,6 +20,7 @@ public abstract class Player extends Observer {
 		for (int i = 0; i < 14; i++) {
 			this.Hand.add(this.table.draw());
 		}
+		Collections.sort(this.Hand);
 	}
 	
 	public abstract boolean turn();
@@ -163,7 +165,7 @@ public abstract class Player extends Observer {
 	}
 	
 	public String displayHand(){
-		String returnHand = "";
+		String returnHand = this.name + "'s hand: ";
 		for (Tile t: this.Hand) {
 			returnHand += t.toString();
 		}
@@ -175,6 +177,10 @@ public abstract class Player extends Observer {
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 
 }
