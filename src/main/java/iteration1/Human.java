@@ -70,18 +70,18 @@ public class Human extends Player {
 		}
 	}
 	
-	public boolean executeMove() {
+	public void executeMove() {
 		played = turnOptions.remove(choice);
 		table.Board.add(played);
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
 			Tile toRemove = tiles.next();
 			if (played.contains(toRemove)) {
-				System.out.println("Hello");
+				tiles.remove();
 			}
 		}
+		
 		this.is30 = true;
-		return true;
 	}
 	
 	
