@@ -1,5 +1,7 @@
 package iteration1;
 
+import java.util.ArrayList;
+
 import junit.framework.TestCase;
 
 public class TestStrategy1 extends TestCase {
@@ -21,12 +23,21 @@ public class TestStrategy1 extends TestCase {
 	}
 	
 	public void testStrat1Has30() {
+		
+		ArrayList<ArrayList<Tile>> fakeBoard = new ArrayList<ArrayList<Tile>>();
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
 		s1.Hand.clear();
 		s1.Hand.add(G11);
 		s1.Hand.add(B11);
 		s1.Hand.add(O11);
+		fakeMove.add(G11);
+		fakeMove.add(B11);
+		fakeMove.add(O11);
+		fakeBoard.add(fakeMove);
 		
 		assertTrue(s1.turn());
+		s1.turn();
+		assertEquals(table.Board, fakeBoard);
 	}
 	
 	Table table = new Table();
