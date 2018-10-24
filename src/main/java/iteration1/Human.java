@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class Human extends Player {
 	
-	public HashMap turnOptions;
+	public HashMap<Integer, ArrayList<Tile>> turnOptions;
 
 	public Human(Table table, String name) {
 		super(table, name);
@@ -16,7 +16,7 @@ public class Human extends Player {
 	public void turn() {
 		runs = this.findRuns();
 		sets = this.findSets();
-		turnOptions = new HashMap<String, ArrayList<Tile>>();
+		turnOptions = new HashMap<Integer, ArrayList<Tile>>();
 		
 		System.out.println(runs.toString());
 		int counter = 0;
