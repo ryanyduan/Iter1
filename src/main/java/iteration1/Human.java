@@ -16,10 +16,12 @@ public class Human extends Player {
 	}
 
 	@Override
-	public void turn() {
+	public boolean turn() {
 		
 		runs = this.findRuns();
 		sets = this.findSets();
+		
+		if (runs.isEmpty() && sets.isEmpty()) return false;
 		
 		if (!this.is30) {
 			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
@@ -69,6 +71,8 @@ public class Human extends Player {
 			System.out.println("You draw a card since there are no tiles to play.");
 			this.draw();
 		}
+		
+		return true;
 	}
 	
 	

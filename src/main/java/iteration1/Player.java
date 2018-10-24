@@ -21,7 +21,7 @@ public abstract class Player extends Observer {
 		}
 	}
 	
-	public abstract void turn();
+	public abstract boolean turn();
 
 	public ArrayList<ArrayList<Tile>> findRuns(){
 		// reset possible runs 
