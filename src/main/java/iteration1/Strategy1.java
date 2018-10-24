@@ -1,6 +1,8 @@
 package iteration1;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Strategy1 extends Player {
 
@@ -24,6 +26,26 @@ public class Strategy1 extends Player {
 			}
 			this.displayHand();
 			Collections.sort(this.Hand);
+			return false;
+		}
+		
+		if (!this.is30) {
+			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> run = it.next();
+				if (value(run) < 30) {
+					it.remove();
+				}
+			}
+			
+			for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> set = it.next();
+				if (value(set) < 30) {
+					it.remove();
+				}
+			}
+		}
+		
+		if (runs.isEmpty() && sets.isEmpty()) {
 			return false;
 		}
 		
