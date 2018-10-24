@@ -49,6 +49,10 @@ public class Strategy1 extends Player {
 			return false;
 		}
 		
+		else {
+			table.Board.add(sets.remove(0));
+		}
+		
 		return true;
 	}
 
