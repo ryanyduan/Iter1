@@ -36,6 +36,25 @@ public class TestPlayerTurn extends TestCase {
 		
 	}
 	
+	public void testBasicTurn3Melds() {
+		Player human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.add(B1);
+		human.Hand.add(B2);
+		human.Hand.add(B3);
+		human.Hand.add(R4);
+		human.Hand.add(G4);
+		human.Hand.add(O4);
+		human.Hand.add(G12);
+		human.Hand.add(B4);
+		human.Hand.add(R12);
+		human.Hand.add(O12);
+		
+		Collections.sort(human.Hand);
+		
+		human.turn();
+	}
+	
 	Table table = new Table();
 	Tile B1 = new Tile('B',1);
 	Tile B2 = new Tile('B',2);
@@ -47,4 +66,6 @@ public class TestPlayerTurn extends TestCase {
 	Tile B4 = new Tile('B',4);
 	
 	Tile G12 = new Tile('G',12);
+	Tile O12 = new Tile('O',12);
+	Tile R12 = new Tile('R',12);
 }
