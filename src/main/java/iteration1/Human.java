@@ -18,6 +18,23 @@ public class Human extends Player {
 	public void turn() {
 		runs = this.findRuns();
 		sets = this.findSets();
+		
+		if (!this.is30) {
+			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> run = it.next();
+				if (value(run) < 30) {
+					it.remove();
+				}
+			}
+			
+			for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> set = it.next();
+				if (value(set) < 30) {
+					it.remove();
+				}
+			}
+		}
+		
 		turnOptions = new HashMap<Integer, ArrayList<Tile>>();
 		
 		System.out.println(runs.toString());
@@ -26,6 +43,7 @@ public class Human extends Player {
 			turnOptions.put(counter, run);
 			counter++;
 		}
+		
 		for (ArrayList<Tile> set: sets) {
 			turnOptions.put(counter, set);
 			counter++;
@@ -45,7 +63,15 @@ public class Human extends Player {
 		
 	}
 	
-	public static void printMap(HashMap map) {
+	public int value(ArrayList<Tile> meld) {
+		int value = 0;
+		for (Tile t: meld) {
+			value += t.getRank();
+		}
+		return value;
+	}
+	
+	public void printMap(HashMap map) {
 	    Iterator it = map.entrySet().iterator();
 	    while (it.hasNext()) {
 	        HashMap.Entry pair = (HashMap.Entry)it.next();
