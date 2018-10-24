@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Human extends Player {
 	
 	public HashMap<Integer, ArrayList<Tile>> turnOptions;
+	public ArrayList<Tile> played;
 	public int choice = 0;
 
 	public Human(Table table, String name) {
@@ -58,8 +59,8 @@ public class Human extends Player {
 				System.out.println("Choose the number corresponding to the tiles you want to play.");
 				choice = scan.nextInt();
 			}
-			
-			table.Board.add(turnOptions.remove(choice));
+			played = turnOptions.remove(choice);
+			table.Board.add(played);
 			this.is30 = true;
 		}
 		
@@ -67,6 +68,10 @@ public class Human extends Player {
 			System.out.println("You draw a card since there are no tiles to play.");
 			this.draw();
 		}
+	}
+	
+	public boolean executeMove() {
+		return true;
 	}
 	
 	
