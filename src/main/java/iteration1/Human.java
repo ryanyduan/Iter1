@@ -37,7 +37,6 @@ public class Human extends Player {
 		
 		turnOptions = new HashMap<Integer, ArrayList<Tile>>();
 		
-		System.out.println(runs.toString());
 		int counter = 0;
 		for (ArrayList<Tile> run: runs) {
 			turnOptions.put(counter, run);
@@ -49,19 +48,28 @@ public class Human extends Player {
 			counter++;
 		}
 		
-//		System.out.println("Here are your options of melds to play");
-//		printMap(turnOptions);
-//		Scanner scan = new Scanner(System.in);
-//		choice = scan.nextInt();
-//		
-//		if (turnOptions.containsKey(choice)) {
-//			
-//		}
+		if (!turnOptions.isEmpty()) {
+			System.out.println("Here are your options of melds to play");
+			printMap(turnOptions);
+			System.out.println("Choose the number corresponding to the tiles you want to play.");
+			Scanner scan = new Scanner(System.in);
+			choice = scan.nextInt();
+			while (!turnOptions.containsKey(choice)) {
+				System.out.println(turnOptions.keySet());
+				System.out.println("CHOICE" + choice);
+				System.out.println("Choose the number corresponding to the tiles you want to play.");
+				choice = scan.nextInt();
+			}
+			
+//			table.Board.add(turnOptions.remove(choice));
+		}
 		
-		
-		
-		
+		else {
+			System.out.println("You draw a card since there are no tiles to play.");
+			this.draw();
+		}
 	}
+	
 	
 	public int value(ArrayList<Tile> meld) {
 		int value = 0;
@@ -76,7 +84,6 @@ public class Human extends Player {
 	    while (it.hasNext()) {
 	        HashMap.Entry pair = (HashMap.Entry)it.next();
 	        System.out.println(pair.getKey() + " = " + pair.getValue());
-	        it.remove(); // avoids a ConcurrentModificationException
 	    }
 	}
 	

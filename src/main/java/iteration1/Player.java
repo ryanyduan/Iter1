@@ -158,6 +158,10 @@ public abstract class Player extends Observer {
 		return true;
 	}
 	
+	public void draw() {
+		this.Hand.add(table.Deck.remove(0));
+	}
+	
 	public String displayHand(){
 		String returnHand = "";
 		for (Tile t: this.Hand) {
