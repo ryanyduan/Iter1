@@ -59,9 +59,9 @@ public class Human extends Player {
 				System.out.println("Choose the number corresponding to the tiles you want to play.");
 				choice = scan.nextInt();
 			}
-			played = turnOptions.remove(choice);
-			table.Board.add(played);
-			this.is30 = true;
+			
+			executeMove();
+
 		}
 		
 		else {
@@ -71,6 +71,16 @@ public class Human extends Player {
 	}
 	
 	public boolean executeMove() {
+		played = turnOptions.remove(choice);
+		table.Board.add(played);
+		
+		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
+			Tile toRemove = tiles.next();
+			if (played.contains(toRemove)) {
+				System.out.println("Hello");
+			}
+		}
+		this.is30 = true;
 		return true;
 	}
 	
