@@ -19,6 +19,11 @@ public class TestGame extends TestCase {
 		assertEquals(true, Rummikub.win);
 	}
 	
+	public void testDeckEmpty() {
+		Rummikub.main(null);
+		
+	}
+	
 	Tile B11 = new Tile('B',11);
 	Tile G11 = new Tile('G',11);
 	Tile O11 = new Tile('O',11);
