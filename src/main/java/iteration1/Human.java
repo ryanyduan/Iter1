@@ -19,6 +19,10 @@ public class Human extends Player {
 	@Override
 	public boolean turn() {
 		
+		//Finds all melds.  If no melds, draw a card and end turn.
+		//If player has not broken initial 30 points, require they play a meld with 30 points
+		//Shows player list of melds to play and executes the move the player chooses
+		
 		runs = this.findRuns();
 		sets = this.findSets();
 		
@@ -86,8 +90,10 @@ public class Human extends Player {
 	
 	public void executeMove() {
 		
-		// Play the meld onto the board and also remove the corresponding tiles from player's hand
+		// Play the meld onto the board (showing with '*' that it was just played) and also remove the corresponding tiles from player's hand 
 		// If player has just "broken" his rule about not being able to play until he has 30 points, the rule is now broken (is30 = true)
+		// Displays Hand
+		// Displays Table
 		
 		played = turnOptions.remove(choice);
 		
