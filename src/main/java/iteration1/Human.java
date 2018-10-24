@@ -28,7 +28,12 @@ public class Human extends Player {
 		
 		if (runs.isEmpty() && sets.isEmpty()) {
 			System.out.println("You draw a card since there are no tiles to play.");
-			this.draw();
+			if (this.table.Deck.isEmpty()) {
+				System.out.println("Deck is empty. No card was drawn.");
+			}
+			else {
+				this.draw();
+			}
 			this.displayHand();
 			Collections.sort(this.Hand);
 			return false;
@@ -79,7 +84,12 @@ public class Human extends Player {
 		
 		else {
 			System.out.println("You draw a card since there are no tiles to play.");
-			this.draw();
+			if (this.table.Deck.isEmpty()) {
+				System.out.println("Deck is empty. No card was drawn.");
+			}
+			else {
+				this.draw();
+			}
 			this.displayHand();
 			Collections.sort(this.Hand);
 			return false;
@@ -118,22 +128,7 @@ public class Human extends Player {
 		for (Tile t: played) {
 			t.justPlayed = false;
 		}
-	}
-	
-	
-	
-	public int value(ArrayList<Tile> meld) {
-		
-		// Calculate the value of a meld
-		
-		int value = 0;
-		for (Tile t: meld) {
-			value += t.getRank();
-		}
-		return value;
-	}
-	
-	
+	}	
 	
 	public void printMap(HashMap map) {
 		

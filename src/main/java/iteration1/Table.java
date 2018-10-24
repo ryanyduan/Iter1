@@ -19,8 +19,7 @@ public class Table {
 	}
 	
 	public Tile draw() {
-		if (!Deck.isEmpty()) return Deck.remove(0);
-		return null;
+		return Deck.remove(0);
 	}
 	
 	private void createDeck() {

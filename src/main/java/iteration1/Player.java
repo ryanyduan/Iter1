@@ -160,6 +160,17 @@ public abstract class Player extends Observer {
 		return true;
 	}
 	
+	public int value(ArrayList<Tile> meld) {
+		
+		// Calculate the value of a meld
+		
+		int value = 0;
+		for (Tile t: meld) {
+			value += t.getRank();
+		}
+		return value;
+	}
+	
 	public void draw() {
 		this.Hand.add(table.Deck.remove(0));
 	}
