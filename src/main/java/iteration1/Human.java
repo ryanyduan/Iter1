@@ -61,7 +61,7 @@ public class Human extends Player {
 				choice = scan.nextInt();
 			}
 			
-//			table.Board.add(turnOptions.remove(choice));
+			table.Board.add(turnOptions.remove(choice));
 		}
 		
 		else {

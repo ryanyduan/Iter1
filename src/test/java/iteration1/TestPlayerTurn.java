@@ -116,12 +116,14 @@ public class TestPlayerTurn extends TestCase {
 		Collections.sort(human.Hand);
 		human.turn();
 		
+		ArrayList<ArrayList<Tile>> fakeBoard = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> humanTurn = new ArrayList<Tile>();
 		humanTurn.add(R12);
 		humanTurn.add(G12);
 		humanTurn.add(O12);
+		fakeBoard.add(humanTurn);
 		
-		assertEquals(table.Board, humanTurn);
+		assertEquals(table.Board, fakeBoard);
 	}
 	
 	Table table = new Table();
