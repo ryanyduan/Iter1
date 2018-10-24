@@ -72,7 +72,7 @@ public class TestPlayerTurn extends TestCase {
 		Collections.sort(human.Hand);
 		human.turn();
 		human.choice = 0;
-		assertEquals(human.turnOptions.get(0), human.turnOptions.get(choice)); 
+		assertEquals(human.turnOptions.get(0), human.turnOptions.get(human.choice)); 
 	}
 	
 	Table table = new Table();

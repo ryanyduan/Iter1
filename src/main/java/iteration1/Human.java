@@ -3,10 +3,12 @@ package iteration1;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Human extends Player {
 	
 	public HashMap<Integer, ArrayList<Tile>> turnOptions;
+	public int choice = 0;
 
 	public Human(Table table, String name) {
 		super(table, name);
@@ -29,8 +31,14 @@ public class Human extends Player {
 			counter++;
 		}
 		
-		System.out.println("Here are your options of melds to play");
-		printMap(turnOptions);
+//		System.out.println("Here are your options of melds to play");
+//		printMap(turnOptions);
+//		Scanner scan = new Scanner(System.in);
+//		choice = scan.nextInt();
+//		
+//		if (turnOptions.containsKey(choice)) {
+//			
+//		}
 		
 		
 		

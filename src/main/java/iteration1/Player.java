@@ -9,6 +9,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
 	private ArrayList<ArrayList<Tile>> optimalMoves;
+	public boolean is30 = false;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
