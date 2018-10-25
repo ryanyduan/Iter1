@@ -93,6 +93,10 @@ public abstract class Player extends Observer {
 	
 	public int optimalMove(){
 		
+		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
+			executeMove();
+		}
+		
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
 		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
