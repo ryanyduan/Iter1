@@ -53,12 +53,14 @@ public class TestStrategy1 extends TestCase {
 		s1.Hand.add(G4);
 		s1.Hand.add(O4);
 		Collections.sort(s1.Hand);
+		s1.findRuns();
+		s1.findSets();
 		
 		fakeOptimalMove.add(B3);
 		fakeOptimalMove.add(G3);
 		fakeOptimalMove.add(O3);
-		
-		assertEquals(fakeOptimalMove, s1.optimalMove())
+		s1.optimalMove();
+		assertEquals(6, s1.possibleSetsLength);
 		
 	}
 	

@@ -11,6 +11,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> sets;
 	private ArrayList<ArrayList<Tile>> optimalMoves;
 	public boolean is30 = false;
+	public int possibleSetsLength;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -94,7 +95,7 @@ public abstract class Player extends Observer {
 		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		int currentLength = 0;
-		int possibleSetsLength = 0;
+		possibleSetsLength = 0;
 		
 		if (this.runs.isEmpty()) return -1; // if no possible runs just return empty ArrayList
 		
