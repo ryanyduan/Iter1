@@ -204,7 +204,7 @@ public class PlayerFindMeldsTest extends TestCase {
 		optimalMove.add(G5);
 		optimalMove.add(O5);
 		optimalMove.add(R5);
-		assertEquals(optimalMove, player.optimalMove());
+		assertEquals(optimalMove, player.turn());
 	}
 	
 	public void testOptimalMove0Melds() {
@@ -218,7 +218,7 @@ public class PlayerFindMeldsTest extends TestCase {
 		player.findSets();
 		
 		ArrayList<Tile> optimalMove = new ArrayList<Tile>();
-		assertEquals(optimalMove, player.optimalMove());
+		assertEquals(optimalMove, player.turn());
 		
 	}
 	
@@ -245,7 +245,7 @@ public class PlayerFindMeldsTest extends TestCase {
 		
 		player.findRuns();
 		player.findSets();
-		assertTrue(optimalMoves.contains(player.optimalMove()));
+		assertTrue(optimalMoves.contains(player.turn()));
 	}
 	
 	Table test = new Table();

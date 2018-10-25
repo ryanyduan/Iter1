@@ -110,6 +110,7 @@ public class TestStrategy1 extends TestCase {
 		
 		ArrayList<Tile> fakeOptimalMove = new ArrayList<Tile>();
 		s1.Hand.clear();
+		table.Board.clear();
 		s1.is30 = true;
 		s1.Hand.add(B1);
 		s1.Hand.add(B2);

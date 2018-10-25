@@ -14,6 +14,8 @@ public abstract class Player extends Observer {
 	public boolean is30 = false;
 	public int possibleSetsLength;
 	public ArrayList<ArrayList<Tile>> possibleSets;
+	public ArrayList<ArrayList<Tile>> possibleRuns;
+	public int possibleRunsLength;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -97,9 +99,6 @@ public abstract class Player extends Observer {
 		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		
-		if (!this.sets.isEmpty()) {
-			
-		}
 		if (!this.runs.isEmpty()) {
 			for (ArrayList<Tile> currentRun: this.runs) {
 				possibleSets = new ArrayList<ArrayList<Tile>>();
@@ -129,32 +128,57 @@ public abstract class Player extends Observer {
 					optimalMoves.clear();
 					optimalLength = possibleSetsLength;
 					optimalMoves = possibleSets;
-					executeMove();
 				}
 				else if (possibleSetsLength < currentRunLength && currentRunLength > optimalLength){
 					optimalMoves.clear();
 					optimalLength = currentRunLength;
 					optimalMoves.add(currentRun);
-					executeMove();
 				}
+				
+				System.out.println(optimalLength);
 			}
 		}
 		
 		
+		// next possible difficult scenario is 12333345 where 3333 will be the longest but the best move is actually [{123}, {333}] or [{333, 345}]
 		
-		
-		
-		
-		// next possible difficult scenario is 123333 where 3333 will be the longest but the best move is actually 333 123
-		
-//		for (ArrayList<Tile> currentSet: this.sets) {
-//			if (currentSet.size() > optimalLength) {
-//				optimalLength = currentSet.size();
-//				optimalMoves.clear();
-//				optimalMoves.add(currentSet);
-//			}
-//		}
-		
+			if (!this.sets.isEmpty()) {
+				for (ArrayList<Tile> currentSet: sets) {
+					possibleRuns = new ArrayList<ArrayList<Tile>>();
+					possibleRunsLength = 0;
+					int currentSetLength = currentSet.size();
+					if (this.runs.isEmpty()) {
+						for (Tile currentTile: currentSet) {
+							for (ArrayList<Tile> run: this.runs) {
+								if (run.contains(currentTile)) {
+									ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
+									run_copy.remove(currentTile);
+									
+									if (!isRun(run_copy)) {
+										possibleRunsLength += run.size();
+										possibleRuns.add(run);
+									}
+								}
+							}
+						}
+						
+					}
+					
+					if (possibleRunsLength > currentSetLength && possibleRunsLength > optimalLength) {
+						optimalMoves.clear();
+						optimalLength = possibleRunsLength;
+						optimalMoves = possibleRuns;
+					}
+					
+					else if (possibleRunsLength < currentSetLength && currentSetLength > optimalLength) {
+						optimalMoves.clear();
+						optimalLength = currentSetLength;
+						optimalMoves.add(currentSet);
+					}
+				}
+			}
+			
+			executeMove();
 	}
 	
 	public void executeMove() {
