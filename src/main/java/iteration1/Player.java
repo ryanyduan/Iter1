@@ -9,9 +9,10 @@ public abstract class Player extends Observer {
 	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
-	private ArrayList<ArrayList<Tile>> optimalMoves;
+	public ArrayList<ArrayList<Tile>> optimalMoves;
 	public boolean is30 = false;
 	public int possibleSetsLength;
+	public ArrayList<ArrayList<Tile>> possibleSets;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -94,13 +95,13 @@ public abstract class Player extends Observer {
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
 		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
-		int currentLength = 0;
-		possibleSetsLength = 0;
 		
 		if (this.runs.isEmpty()) return -1; // if no possible runs just return empty ArrayList
 		
 		for (ArrayList<Tile> currentRun: this.runs) {
-			currentLength = currentRun.size();
+			possibleSets = new ArrayList<ArrayList<Tile>>();
+			possibleSetsLength = 0;
+			int currentRunLength = currentRun.size();
 			
 			if (!this.sets.isEmpty()) {
 				for (Tile currentTile: currentRun) {
@@ -112,7 +113,11 @@ public abstract class Player extends Observer {
 							// for example if we have 12345 but inside we have 333 444, if we play 12345 we wont be able to play 333,444 
 							//which is the optimal move
 							
-							if (!isSet(set_copy)) possibleSetsLength += set_copy.size() + 1;
+							if (!isSet(set_copy)) {
+								possibleSetsLength += set.size();
+								possibleSets.add(set);
+							}
+							
 							System.out.println(possibleSetsLength);
 							
 //							if (!isSet(set_copy) && (currentLength + set_copy.size() > optimalLength)) {
@@ -127,19 +132,27 @@ public abstract class Player extends Observer {
 				}
 			}
 			
-			if (currentLength > optimalLength) {
-				optimalLength = currentLength;
-				optimalMoves = currentOptimalMoves;
+			if (possibleSetsLength > currentRunLength && possibleSetsLength > optimalLength) {
+				optimalMoves.clear();
+				optimalLength = possibleSetsLength;
+				optimalMoves = possibleSets;
+			}
+			else if (possibleSetsLength < currentRunLength && currentRunLength > optimalLength){
+				optimalMoves.clear();
+				optimalLength = currentRunLength;
+				optimalMoves.add(currentRun);
 			}
 		}
 		
-		for (ArrayList<Tile> currentSet: this.sets) {
-			if (currentSet.size() > optimalLength) {
-				optimalLength = currentSet.size();
-				optimalMoves.clear();
-				optimalMoves.add(currentSet);
-			}
-		}
+		// next possible difficult scenario is 123333 where 3333 will be the longest but the best move is actually 333 123
+		
+//		for (ArrayList<Tile> currentSet: this.sets) {
+//			if (currentSet.size() > optimalLength) {
+//				optimalLength = currentSet.size();
+//				optimalMoves.clear();
+//				optimalMoves.add(currentSet);
+//			}
+//		}
 		
 		return 1;
 		

@@ -61,8 +61,9 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(O3);
 		s1.optimalMove();
 		assertEquals(6, s1.possibleSetsLength);
-		
+		assertEquals(fakeOptimalMove, s1.optimalMoves.get(0));
 	}
+	
 	
 	Table table = new Table();
 	Player s1 = new Strategy1(table, "S1");
