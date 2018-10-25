@@ -17,10 +17,10 @@ public abstract class Player extends Observer {
 		this.table = table;
 		this.name = name;
 		this.table.attach(this);
-//		for (int i = 0; i < 14; i++) {
-//			this.Hand.add(this.table.draw());
-//		}
-//		Collections.sort(this.Hand);
+		for (int i = 0; i < 14; i++) {
+			this.Hand.add(this.table.draw());
+		}
+		Collections.sort(this.Hand);
 	}
 	
 	public abstract boolean turn();
@@ -94,6 +94,7 @@ public abstract class Player extends Observer {
 		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		int currentLength = 0;
+		int possibleSetsLength = 0;
 		
 		if (this.runs.isEmpty()) return -1; // if no possible runs just return empty ArrayList
 		
@@ -106,13 +107,20 @@ public abstract class Player extends Observer {
 						if (set.contains(currentTile)){
 							ArrayList<Tile> set_copy = new ArrayList<Tile>(set); //making a copy just in case remove() mutates the ArrayList
 							set_copy.remove(currentTile);
-							if (!isSet(set_copy) && (currentLength + set_copy.size() > optimalLength)) {
-								ArrayList<Tile> run_copy = new ArrayList<Tile>(currentRun);
-								run_copy.remove(currentTile);
-								currentLength += set_copy.size();
-								currentOptimalMoves.add(set_copy);
-								currentOptimalMoves.add(run_copy);
-							}
+							
+							// for example if we have 12345 but inside we have 333 444, if we play 12345 we wont be able to play 333,444 
+							//which is the optimal move
+							
+							if (!isSet(set_copy)) possibleSetsLength += set_copy.size() + 1;
+							System.out.println(possibleSetsLength);
+							
+//							if (!isSet(set_copy) && (currentLength + set_copy.size() > optimalLength)) {
+//								ArrayList<Tile> run_copy = new ArrayList<Tile>(currentRun);
+//								run_copy.remove(currentTile);
+//								currentLength += set_copy.size();
+//								currentOptimalMoves.add(set_copy);
+//								currentOptimalMoves.add(run_copy);
+//							}
 						}
 					}
 				}
