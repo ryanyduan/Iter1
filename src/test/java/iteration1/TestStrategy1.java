@@ -57,17 +57,48 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(B3);
 		fakeOptimalMove.add(G3);
 		fakeOptimalMove.add(O3);
-		s1.optimalMove();
+		s1.turn();
 		assertEquals(6, s1.possibleSetsLength);
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 		fakeOptimalMove.clear();
 		fakeOptimalMove.add(B4);
 		fakeOptimalMove.add(G4);
 		fakeOptimalMove.add(O4);
-		s1.optimalMove();
+		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(1));
 	}
 	
+	public void testOptimalMoveWithoutFixing30() {
+		ArrayList<Tile> fakeOptimalMove = new ArrayList<Tile>();
+		
+		s1.Hand.clear();
+		s1.Hand.add(B1);
+		s1.Hand.add(B2);
+		s1.Hand.add(B3);
+		s1.Hand.add(B4);
+		s1.Hand.add(B5);
+		s1.Hand.add(G3);
+		s1.Hand.add(O3);
+		s1.Hand.add(G4);
+		s1.Hand.add(O4);
+		s1.Hand.add(B11);
+		s1.Hand.add(G11);
+		s1.Hand.add(O11);
+		
+		Collections.sort(s1.Hand);
+		
+		fakeOptimalMove.add(B11);
+		fakeOptimalMove.add(G11);
+		fakeOptimalMove.add(O11);
+		s1.turn();
+		assertEquals(fakeOptimalMove, table.Board.get(0));
+		fakeOptimalMove.clear();
+		fakeOptimalMove.add(B3);
+		fakeOptimalMove.add(G3);
+		fakeOptimalMove.add(O3);
+		s1.turn();
+		assertEquals(fakeOptimalMove, table.Board.get(1));
+	}
 	
 	Table table = new Table();
 	Player s1 = new Strategy1(table, "S1");
@@ -77,6 +108,7 @@ public class TestStrategy1 extends TestCase {
 	Tile B3 = new Tile('B',3);
 	Tile B4 = new Tile('B',4);
 	Tile B5 = new Tile('B',5);
+	
 	
 	Tile G3 = new Tile('G',3);
 	Tile O3 = new Tile('O',3);

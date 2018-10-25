@@ -13,47 +13,62 @@ public class Strategy1 extends Player {
 	@Override
 	public boolean turn() {
 		
-		runs = this.findRuns();
-		sets = this.findSets();
-		
-		if (runs.isEmpty() && sets.isEmpty()) {
-			System.out.println(this.getName() + " draws a card since there are no tiles to play.");
-			if (this.table.Deck.isEmpty()) {
-				System.out.println("Deck is empty. No card was drawn.");
-			}
-			else {
-				this.draw();
-			}
-			this.displayHand();
-			Collections.sort(this.Hand);
-			return false;
-		}
-		
-		if (!this.is30) {
-			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
-				ArrayList<Tile> run = it.next();
-				if (value(run) < 30) {
-					it.remove();
-				}
-			}
-			
-			for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
-				ArrayList<Tile> set = it.next();
-				if (value(set) < 30) {
-					it.remove();
-				}
-			}
-		}
-		
-		if (runs.isEmpty() && sets.isEmpty()) {
-			return false;
+		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
+			executeMove();
 		}
 		
 		else {
-			table.Board.add(sets.remove(0));
+			
+			runs = this.findRuns();
+			sets = this.findSets();
+			
+			if (runs.isEmpty() && sets.isEmpty()) {
+				System.out.println(this.getName() + " draws a card since there are no tiles to play.");
+				if (this.table.Deck.isEmpty()) {
+					System.out.println("Deck is empty. No card was drawn.");
+				}
+				else {
+					this.draw();
+				}
+				this.displayHand();
+				Collections.sort(this.Hand);
+				return false;
+			}
+			
+			if (!this.is30) {
+				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
+					ArrayList<Tile> run = it.next();
+					if (value(run) < 30) {
+						it.remove();
+					}
+				}
+				
+				for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
+					ArrayList<Tile> set = it.next();
+					if (value(set) < 30) {
+						it.remove();
+					}
+				}
+				
+				if (runs.isEmpty() && sets.isEmpty()) {
+					return false;
+				}
+				
+				else {
+					optimalMove();
+				}
+			}
+			
+			else {
+				optimalMove();
+			}
+			
+			
 		}
-		
 		return true;
 	}
+	
+	
+	
 
 }

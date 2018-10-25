@@ -98,6 +98,7 @@ public class Human extends Player {
 		return true;
 	}
 	
+	@Override
 	public void executeMove() {
 		
 		// Play the meld onto the board (showing with '*' that it was just played) and also remove the corresponding tiles from player's hand 

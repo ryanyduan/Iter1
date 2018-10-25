@@ -4,6 +4,7 @@ public class Rummikub {
 	
 	public static Table table;
 	public static Player human;
+	public static Player s1;
 	public static Player[] players;
 	public static Player currentPlayer;
 	public static boolean win;
@@ -15,8 +16,11 @@ public class Rummikub {
 		table = new Table();
 		players = new Player[4];
 		human = new Human(table, "Human");
+		s1 = new Strategy1(table, "Strategy1");
 		players[0] = human;
+		players[1] = s1;
 		human.displayHand();
+		s1.displayHand();
 		
 		while (!win) {
 			int counter = 0;
