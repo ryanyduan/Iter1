@@ -3,6 +3,7 @@ package iteration1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class Player extends Observer {
 	
@@ -153,10 +154,10 @@ public abstract class Player extends Observer {
 							for (ArrayList<Tile> run: this.runs) {
 								if (run.contains(currentTile)) {
 									System.out.println(run.toString());
+									int index = run.indexOf(currentTile);
 									ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
 									run_copy.remove(currentTile);
-									
-									if (!isRun(run_copy)) {
+									if (isRun(run_copy.subList(0, index))) {
 										tilesRemoved += 1;
 										possibleRunsLength += run_copy.size();
 										System.out.println("possible run len " + possibleRunsLength );
@@ -226,19 +227,19 @@ public abstract class Player extends Observer {
 		return false;
 	}
 	
-	public boolean isRun(ArrayList<Tile> tryRun) {
+	public boolean isRun(List<Tile> list) {
 		
-		if (tryRun.size() < 3) return false;
+		if (list.size() < 3) return false;
 		
 		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
 		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
 
 		int tryRunSum = 0;
-		for (Tile t: tryRun) {
+		for (Tile t: list) {
 			tryRunSum += t.getRank();
 		}
 		
-		if ((tryRun.size() / 2) * (2*tryRun.get(0).getRank() + (tryRun.size()-1)) != tryRunSum) return false;
+		if ((list.size() / 2) * (2*list.get(0).getRank() + (list.size()-1)) != tryRunSum) return false;
 		
 		return true;
 		
