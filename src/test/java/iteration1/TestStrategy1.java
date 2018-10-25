@@ -150,6 +150,8 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(B1);
 		fakeOptimalMove.add(B2);
 		fakeOptimalMove.add(B3);
+		fakeOptimalMove.add(B4);
+		
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 		
 		fakeOptimalMove.clear();
@@ -157,9 +159,11 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(B1);
 		fakeOptimalMove.add(B2);
 		fakeOptimalMove.add(B3);
+		fakeOptimalMove.add(B5);
+		fakeOptimalMove.add(B6);
 		
 		s1.turn();
-		assertEquals(fakeOptimalMove, table.Board.get(1));
+		assertEquals(fakeOptimalMove, table.Board.get(0));
 		
 	}
 	
@@ -180,6 +184,8 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(B2);
 		fakeOptimalMove.add(B3);
 		fakeOptimalMove.add(B4);
+		fakeOptimalMove.add(B5);
+		fakeOptimalMove.add(B6);
 		
 		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(0));
