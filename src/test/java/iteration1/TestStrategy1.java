@@ -82,14 +82,14 @@ public class TestStrategy1 extends TestCase {
 		s1.Hand.add(G4);
 		s1.Hand.add(O4);
 		s1.Hand.add(B11);
-		s1.Hand.add(G11);
-		s1.Hand.add(O11);
+		s1.Hand.add(B9);
+		s1.Hand.add(B10);
 		
 		Collections.sort(s1.Hand);
 		
+		fakeOptimalMove.add(B9);
+		fakeOptimalMove.add(B10);
 		fakeOptimalMove.add(B11);
-		fakeOptimalMove.add(G11);
-		fakeOptimalMove.add(O11);
 		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 		fakeOptimalMove.clear();
@@ -98,6 +98,12 @@ public class TestStrategy1 extends TestCase {
 		fakeOptimalMove.add(O3);
 		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(1));
+		fakeOptimalMove.clear();
+		fakeOptimalMove.add(B4);
+		fakeOptimalMove.add(G4);
+		fakeOptimalMove.add(O4);
+		s1.turn();
+		assertEquals(fakeOptimalMove, table.Board.get(2));
 	}
 	
 	Table table = new Table();
@@ -119,5 +125,7 @@ public class TestStrategy1 extends TestCase {
 	Tile O11 = new Tile('O',11);
 	Tile G11 = new Tile('G',11);
 	Tile B11 = new Tile('B',11);
+	Tile B10 = new Tile('B',10);
+	Tile B9 = new Tile('B',9);
 
 }

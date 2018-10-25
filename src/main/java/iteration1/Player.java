@@ -142,7 +142,7 @@ public abstract class Player extends Observer {
 				optimalMoves.clear();
 				optimalLength = currentRunLength;
 				optimalMoves.add(currentRun);
-				this.table.Board.add(optimalMoves.remove(0));
+				executeMove();
 			}
 		}
 		
@@ -186,6 +186,7 @@ public abstract class Player extends Observer {
 			t.justPlayed = false;
 		}
 		
+		this.is30 = true;
 	}
 	
 	public boolean isRun(ArrayList<Tile> tryRun) {
