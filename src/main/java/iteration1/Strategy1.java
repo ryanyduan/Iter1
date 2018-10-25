@@ -23,16 +23,7 @@ public class Strategy1 extends Player {
 			sets = this.findSets();
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
-				System.out.println(this.getName() + " draws a card since there are no tiles to play.");
-				if (this.table.Deck.isEmpty()) {
-					System.out.println("Deck is empty. No card was drawn.");
-				}
-				else {
-					this.draw();
-				}
-				this.displayHand();
-				Collections.sort(this.Hand);
-				return false;
+				return emptyMessage();
 			}
 			
 			if (!this.is30) {
@@ -51,7 +42,7 @@ public class Strategy1 extends Player {
 				}
 				
 				if (runs.isEmpty() && sets.isEmpty()) {
-					return false;
+					return emptyMessage();
 				}
 				
 				else {

@@ -189,6 +189,19 @@ public abstract class Player extends Observer {
 		this.is30 = true;
 	}
 	
+	public boolean emptyMessage() {
+		System.out.println(this.getName() + " draws a card since there are no tiles to play.");
+		if (this.table.Deck.isEmpty()) {
+			System.out.println("Deck is empty. No card was drawn.");
+		}
+		else {
+			this.draw();
+		}
+		this.displayHand();
+		Collections.sort(this.Hand);
+		return false;
+	}
+	
 	public boolean isRun(ArrayList<Tile> tryRun) {
 		
 		if (tryRun.size() < 3) return false;

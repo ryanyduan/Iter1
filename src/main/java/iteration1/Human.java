@@ -83,16 +83,7 @@ public class Human extends Player {
 		}
 		
 		else {
-			System.out.println("You draw a card since there are no tiles to play.");
-			if (this.table.Deck.isEmpty()) {
-				System.out.println("Deck is empty. No card was drawn.");
-			}
-			else {
-				this.draw();
-			}
-			this.displayHand();
-			Collections.sort(this.Hand);
-			return false;
+			return emptyMessage();
 		}
 		
 		return true;
