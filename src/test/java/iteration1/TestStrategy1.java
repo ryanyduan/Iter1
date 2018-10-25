@@ -106,14 +106,41 @@ public class TestStrategy1 extends TestCase {
 		assertEquals(fakeOptimalMove, table.Board.get(2));
 	}
 	
+	public void testOptimalMoveIsSet() {
+		
+		ArrayList<Tile> fakeOptimalMove = new ArrayList<Tile>();
+		s1.Hand.clear();
+		s1.is30 = true;
+		s1.Hand.add(B1);
+		s1.Hand.add(B2);
+		s1.Hand.add(B3);
+		s1.Hand.add(R5);
+		s1.Hand.add(B5);
+		s1.Hand.add(G5);
+		s1.Hand.add(O5);
+		Collections.sort(s1.Hand);
+		
+		fakeOptimalMove.add(R5);
+		fakeOptimalMove.add(B5);
+		fakeOptimalMove.add(G5);
+		fakeOptimalMove.add(O5);
+		
+		s1.turn();
+		assertEquals(fakeOptimalMove, table.Board.get(0));
+	}
+	
 	Table table = new Table();
 	Player s1 = new Strategy1(table, "S1");
 	
 	Tile B1 = new Tile('B',1);
 	Tile B2 = new Tile('B',2);
 	Tile B3 = new Tile('B',3);
+	Tile R4 = new Tile('R',4);
 	Tile B4 = new Tile('B',4);
 	Tile B5 = new Tile('B',5);
+	Tile R5 = new Tile('R',5);
+	Tile G5 = new Tile('G',5);
+	Tile O5 = new Tile('O',5);
 	
 	
 	Tile G3 = new Tile('G',3);

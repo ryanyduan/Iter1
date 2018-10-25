@@ -1,7 +1,6 @@
 package iteration1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 public class Strategy1 extends Player {
@@ -53,8 +52,7 @@ public class Strategy1 extends Player {
 			else {
 				optimalMove();
 			}
-			
-			
+				
 		}
 		return true;
 	}

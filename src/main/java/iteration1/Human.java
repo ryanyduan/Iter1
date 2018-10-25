@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -122,11 +123,11 @@ public class Human extends Player {
 		}
 	}	
 	
-	public void printMap(HashMap map) {
+	public void printMap(HashMap<Integer, ArrayList<Tile>> map) {
 		
 		// Print each of the player's possible melds he/she can play
 		
-	    Iterator it = map.entrySet().iterator();
+	    Iterator<Entry<Integer, ArrayList<Tile>>> it = map.entrySet().iterator();
 	    while (it.hasNext()) {
 	        HashMap.Entry pair = (HashMap.Entry)it.next();
 	        System.out.println(pair.getKey() + " = " + pair.getValue());
