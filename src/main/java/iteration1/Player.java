@@ -2,6 +2,7 @@ package iteration1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public abstract class Player extends Observer {
 	
@@ -118,7 +119,6 @@ public abstract class Player extends Observer {
 								possibleSets.add(set);
 							}
 							
-							System.out.println(possibleSetsLength);
 							
 //							if (!isSet(set_copy) && (currentLength + set_copy.size() > optimalLength)) {
 //								ArrayList<Tile> run_copy = new ArrayList<Tile>(currentRun);
@@ -136,11 +136,13 @@ public abstract class Player extends Observer {
 				optimalMoves.clear();
 				optimalLength = possibleSetsLength;
 				optimalMoves = possibleSets;
+				executeMove();
 			}
 			else if (possibleSetsLength < currentRunLength && currentRunLength > optimalLength){
 				optimalMoves.clear();
 				optimalLength = currentRunLength;
 				optimalMoves.add(currentRun);
+				this.table.Board.add(optimalMoves.remove(0));
 			}
 		}
 		
@@ -158,6 +160,30 @@ public abstract class Player extends Observer {
 		
 	}
 	
+	public void executeMove() {
+		
+		for (Tile t: optimalMoves.get(0)) {
+			t.justPlayed = true;
+		}
+		
+		ArrayList<Tile> tempPlayed = optimalMoves.get(0);
+		this.table.Board.add(optimalMoves.remove(0));
+		
+		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
+			Tile toRemove = tiles.next();
+			if (tempPlayed.contains(toRemove)) {
+				tiles.remove();
+			}
+		}
+		
+		Collections.sort(this.Hand);
+		this.displayHand();
+		table.displayBoard();
+		for (Tile t: tempPlayed) {
+			t.justPlayed = false;
+		}
+		
+	}
 	
 	public boolean isRun(ArrayList<Tile> tryRun) {
 		
