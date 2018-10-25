@@ -130,6 +130,24 @@ public class TestStrategy1 extends TestCase {
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 	}
 	
+	public void testHardSet() {
+		ArrayList<Tile> fakeOptimalMove = new ArrayList<Tile>();
+		s1.Hand.clear();
+		s1.is30 = true;
+		s1.Hand.add(B1);
+		s1.Hand.add(B2);
+		s1.Hand.add(B3);
+		s1.Hand.add(R3);
+		s1.Hand.add(G3);
+		s1.Hand.add(O3);
+		Collections.sort(s1.Hand);
+		s1.turn();
+		fakeOptimalMove.add(B1);
+		fakeOptimalMove.add(B2);
+		fakeOptimalMove.add(B3);
+		assertEquals(fakeOptimalMove, table.Board.get(0));
+	}
+	
 	Table table = new Table();
 	Player s1 = new Strategy1(table, "S1");
 	
@@ -139,6 +157,7 @@ public class TestStrategy1 extends TestCase {
 	Tile R4 = new Tile('R',4);
 	Tile B4 = new Tile('B',4);
 	Tile B5 = new Tile('B',5);
+	Tile R3 = new Tile('R',3);
 	Tile R5 = new Tile('R',5);
 	Tile G5 = new Tile('G',5);
 	Tile O5 = new Tile('O',5);
