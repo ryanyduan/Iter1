@@ -148,7 +148,6 @@ public abstract class Player extends Observer {
 					possibleRuns = new ArrayList<ArrayList<Tile>>();
 					possibleRunsLength = 0;
 					int tilesRemoved = 0;
-					Tile currentTileKeep = null;
 					int currentSetLength = currentSet.size();
 					if (!this.runs.isEmpty()) {
 						for (Tile currentTile: currentSet) {
@@ -173,7 +172,6 @@ public abstract class Player extends Observer {
 										}
 										
 										int indexNext = run.indexOf(nextTile);
-										int indexMin = run_copy.indexOf(run_copy.get(run_copy.size()-1));
 										if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1))) {
 											possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1).size();
 											ArrayList<Tile> tempListAfter = new ArrayList<Tile>(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1));
@@ -183,7 +181,6 @@ public abstract class Player extends Observer {
 									}
 								}
 							}
-							currentTileKeep = currentTile;
 						}
 						
 					}
@@ -192,11 +189,9 @@ public abstract class Player extends Observer {
 					
 					if (possiblePlay > currentSetLength && possiblePlay > optimalLength) {
 						optimalMoves.clear();
-						ArrayList<Tile> set_copy = new ArrayList<Tile>(currentSet);
-						set_copy.remove(currentTileKeep);
 						optimalLength = possiblePlay;
 						optimalMoves = possibleRuns;
-						optimalMoves.add(set_copy);
+						optimalMoves.add(currentSet);
 					}
 					
 					else if (possiblePlay < currentSetLength && possiblePlay > optimalLength) {

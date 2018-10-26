@@ -163,6 +163,14 @@ public class TestStrategy1 extends TestCase {
 		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(1));
 		
+		fakeOptimalMove.clear();
+		fakeOptimalMove.add(R4);
+		fakeOptimalMove.add(B4);
+		fakeOptimalMove.add(G4);
+		s1.turn();
+		assertEquals(fakeOptimalMove, table.Board.get(2));
+		
+		
 	}
 	
 	public void testWeirdRun() {
