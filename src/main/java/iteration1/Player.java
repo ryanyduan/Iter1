@@ -153,31 +153,37 @@ public abstract class Player extends Observer {
 						for (Tile currentTile: currentSet) {
 							for (ArrayList<Tile> run: this.runs) {
 								if (run.contains(currentTile)) {
-									Tile nextTile = null;
-									
-									int index = run.indexOf(currentTile);
-									ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
-									for (Tile t: run_copy) {
-										if (t.getRank() == currentTile.getRank())
-									}
-									run_copy.remove(currentTile);
-									if (isRun(run_copy.subList(0, index))) {
-										tilesRemoved += 1;
-										possibleRunsLength += run_copy.subList(0,index).size();
-										System.out.println(possibleRunsLength);
-										possibleRuns.add(run);
-									}
-									for (Tile tile: run_copy) {
-										if (tile.getRank() == currentTile.getRank()+1) {
-											nextTile = tile;
-											break;
+									if (currentSetLength == 3) {
+										Tile nextTile = null;
+										ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
+										for (Tile t: run_copy) {
+											if (t.getRank() == currentTile.getRank()) {
+												currentTile = t;
+											}
 										}
-									}
-									
-									int indexNext = run.indexOf(nextTile);
-									if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))))) {
-										possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))).size();
-										System.out.println(possibleRunsLength);
+										int index = run.indexOf(currentTile);
+										System.out.println("INDEX: "+index);
+										run_copy.remove(currentTile);
+										System.out.println(run_copy.subList(0,index).toString());
+										if (isRun(run_copy.subList(0, index))) {
+											tilesRemoved += 1;
+											possibleRunsLength += run_copy.subList(0,index).size();
+											System.out.println("YO" + possibleRunsLength);
+											possibleRuns.add(run);
+										}
+										for (Tile tile: run_copy) {
+											if (tile.getRank() == currentTile.getRank()+1) {
+												nextTile = tile;
+												break;
+											}
+										}
+										
+										int indexNext = run.indexOf(nextTile);
+										if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))))) {
+											possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))).size();
+											System.out.println(possibleRunsLength);
+										}
+					
 									}
 								}
 							}
@@ -250,12 +256,14 @@ public abstract class Player extends Observer {
 		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
 		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
 
-		int tryRunSum = 0;
+		double tryRunSum = 0;
 		for (Tile t: list) {
 			tryRunSum += t.getRank();
 		}
+
+		double n = (double) list.size();
 		
-		if ((list.size() / 2) * (2*list.get(0).getRank() + (list.size()-1)) != tryRunSum) return false;
+		if ((n / 2.0) * (2*list.get(0).getRank() + (list.size()-1)) != tryRunSum) return false;
 		
 		return true;
 		

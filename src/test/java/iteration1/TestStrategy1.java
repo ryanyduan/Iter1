@@ -146,6 +146,7 @@ public class TestStrategy1 extends TestCase {
 		//123 444 456
 		//optimal play should be this ^
 		Collections.sort(s1.Hand);
+		s1.displayHand();
 		s1.turn();
 		fakeOptimalMove.add(B1);
 		fakeOptimalMove.add(B2);
