@@ -3,14 +3,14 @@ package iteration1;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Strategy1 extends Player {
+public class Strategy3 extends Player {
 
-	public Strategy1(Table table, String name) {
+	public Strategy3(Table table, String name) {
 		super(table, name);
 	}
 
 	@Override
-	public boolean turn() {
+public boolean turn() {
 		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
 			executeMove();
@@ -56,8 +56,5 @@ public class Strategy1 extends Player {
 		}
 		return true;
 	}
-	
-	
-	
 
 }
