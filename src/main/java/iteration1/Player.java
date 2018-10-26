@@ -13,6 +13,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> optimalMoves;
 	public boolean is30 = false;
 	public int possibleSetsLength;
+	public ArrayList<Tile> possibleTiles;
 	public ArrayList<ArrayList<Tile>> possibleSets;
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;

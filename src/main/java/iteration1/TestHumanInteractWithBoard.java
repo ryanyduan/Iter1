@@ -39,6 +39,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 	public void test1SetOnBoard() {
 		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
 		ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
+		human.is30 = true;
 		fakeMove.add(B2);
 		fakeMove.add(B3);
 		fakeMove.add(B4);
@@ -46,6 +47,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 		possibleTiles.add(B5);
 		
 		table.Board.add(fakeMove);
+		human.turn();
 		assertEquals(possibleTiles, human.possibleTiles);
 		
 		

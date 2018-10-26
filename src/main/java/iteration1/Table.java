@@ -9,6 +9,7 @@ public class Table {
 	private static char[] COLORS = {'O','G','R','B'};
 	public ArrayList<Tile> Deck;
 	public ArrayList<ArrayList<Tile>> Board;
+	public ArrayList<Tile> possibleTiles;
 	private List<Observer> observers;
 	private int lowestTilesInHand;
 	
@@ -43,6 +44,27 @@ public class Table {
 		return boardMelds;
 	}
 	
+	public ArrayList<Tile> getPossibleTiles(){
+		possibleTiles = new ArrayList<Tile>();
+		
+		for (ArrayList<Tile> meld: Board) {
+			if (isRun(meld)) {
+				char currentColour = meld.get(0).getColour();
+				if(meld.get(0).getRank() > 1) {
+					int oneLowerRank = meld.get(0).getRank()-1;
+					int oneHigherRank = meld.get(meld.size()-1).getRank() + 1;
+					possibleTiles.add(new Tile(currentColour, oneLowerRank));
+					possibleTiles.add(new Tile(currentColour, oneHigherRank));
+				}
+				else {
+					int oneHigherRank = meld.get(meld.size()-1).getRank() + 1;
+					possibleTiles.add(new Tile(currentColour, oneHigherRank));
+				}
+			}
+		}
+		return possibleTiles;
+	}
+	
 	public int getState() {
 		lowestTilesInHand = observers.get(0).Hand.size();
 		for (Observer o: this.observers) {
@@ -50,8 +72,31 @@ public class Table {
 		}
 		return lowestTilesInHand;
 	}
+	
 	public void attach(Observer observer){
 	      observers.add(observer);	
+	}
+	
+		public boolean isRun(List<Tile> list) {
+		
+		//	this method checks if an existing run is still a run even after taking out a certain tile
+		
+		if (list.size() < 3) return false;
+		
+		//here we'll use the formula for an arithmetic sequence as a shortcut to see if it's a set since we have the 'a' and 'n' and 'd'
+		// Sum of arithmetic sequence = n/2 * (2a + (n-1)d)
+
+		double tryRunSum = 0;
+		for (Tile t: list) {
+			tryRunSum += t.getRank();
+		}
+
+		double n = (double) list.size();
+		
+		if ((n / 2.0) * (2*list.get(0).getRank() + (list.size()-1)) != tryRunSum) return false;
+		
+		return true;
+		
 	}
 	
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Human extends Player {
 	
 	public HashMap<Integer, ArrayList<Tile>> turnOptions;
+	public HashMap<Integer, Tile> boardTurnOptions;
 	public ArrayList<Tile> played;
 	public int choice = 0;
 
@@ -27,7 +28,9 @@ public class Human extends Player {
 		runs = this.findRuns();
 		sets = this.findSets();
 		
-		if (runs.isEmpty() && sets.isEmpty()) {
+		possibleTiles = this.table.getPossibleTiles();
+		
+		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 			emptyMessage();
 			return false;
 		}
@@ -46,9 +49,12 @@ public class Human extends Player {
 					it.remove();
 				}
 			}
+			
+			possibleTiles.clear();
 		}
 		
 		turnOptions = new HashMap<Integer, ArrayList<Tile>>();
+		boardTurnOptions = new HashMap<Integer, Tile>();
 		
 		int counter = 0;
 		for (ArrayList<Tile> run: runs) {
@@ -61,9 +67,15 @@ public class Human extends Player {
 			counter++;
 		}
 		
+		for (Tile tile: possibleTiles) {
+			boardTurnOptions.put(counter, tile);
+			counter++;
+		}
+		
 		if (!turnOptions.isEmpty()) {
 			System.out.println("Here are your options of melds to play");
 			printMap(turnOptions);
+			printMap(boardTurnOptions);
 			System.out.println("Choose the number corresponding to the tiles you want to play.");
 			Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
@@ -116,11 +128,11 @@ public class Human extends Player {
 		}
 	}	
 	
-	public void printMap(HashMap<Integer, ArrayList<Tile>> map) {
+	public void printMap(HashMap map) {
 		
 		// Print each of the player's possible melds he/she can play
 		
-	    Iterator<Entry<Integer, ArrayList<Tile>>> it = map.entrySet().iterator();
+	    Iterator<Entry> it = map.entrySet().iterator();
 	    while (it.hasNext()) {
 	        HashMap.Entry pair = (HashMap.Entry)it.next();
 	        System.out.println(pair.getKey() + " = " + pair.getValue());
