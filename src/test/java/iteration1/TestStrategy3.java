@@ -11,4 +11,11 @@ public class TestStrategy3 extends TestCase {
 	}
 	
 	Table table = new Table();
+	
+	public void testStrategy() {
+		Player s3 = new Strategy3(table, "S3");
+		Player s1 = new Strategy1(table, "S1");
+		
+		assertTrue(s3.condition);
+	}
 }	
