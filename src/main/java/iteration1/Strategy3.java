@@ -26,6 +26,7 @@ public class Strategy3 extends Player {
 			if (this.table.getState() <= this.Hand.size()-3) {
 				condition=true;
 			}
+			else condition = false;
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
 				return emptyMessage();
@@ -51,12 +52,14 @@ public class Strategy3 extends Player {
 				}
 				
 				else {
-					optimalMove();
+					if (condition) optimalMove();
+					else emptyMessage();
 				}
 			}
 			
 			else {
-				optimalMove();
+				if (condition) optimalMove();
+				else emptyMessage();
 			}
 				
 		}

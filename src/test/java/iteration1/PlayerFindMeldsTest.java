@@ -188,6 +188,7 @@ public class PlayerFindMeldsTest extends TestCase {
 	
 	public void testOptimalMove2Melds() {
 		Player player = new Human(test,"Human");
+		player.Hand.clear();
 		player.Hand.add(B1);
 		player.Hand.add(B2);
 		player.Hand.add(B3);
@@ -200,15 +201,18 @@ public class PlayerFindMeldsTest extends TestCase {
 		player.findSets();
 		
 		ArrayList<Tile> optimalMove = new ArrayList<Tile>();
+		player.is30 = true;
 		optimalMove.add(B5);
 		optimalMove.add(G5);
 		optimalMove.add(O5);
 		optimalMove.add(R5);
-		assertEquals(optimalMove, player.turn());
+		player.turn();
+		assertEquals(optimalMove, test.Board.get(0));
 	}
 	
 	public void testOptimalMove0Melds() {
 		Player player = new Human(test,"Human");
+		player.Hand.clear();
 		player.Hand.add(B1);
 		player.Hand.add(B2);
 		player.Hand.add(B5);
@@ -218,7 +222,7 @@ public class PlayerFindMeldsTest extends TestCase {
 		player.findSets();
 		
 		ArrayList<Tile> optimalMove = new ArrayList<Tile>();
-		assertEquals(optimalMove, player.turn());
+		assertEquals(false, player.turn());
 		
 	}
 	
