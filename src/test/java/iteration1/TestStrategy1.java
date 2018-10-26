@@ -19,7 +19,14 @@ public class TestStrategy1 extends TestCase {
 		s1.Hand.add(B2);
 		s1.Hand.add(B3);
 		assertFalse(s1.turn());	
-	}
+		
+		s1.Hand.add(B11);
+		s1.Hand.add(G11);
+		s1.Hand.add(O11);
+		Collections.sort(s1.Hand);
+		s1.turn();
+		assertEquals(B1, s1.table.Board);
+		}
 	
 	public void testStrat1Has30() {
 		

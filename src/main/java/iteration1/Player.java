@@ -109,6 +109,8 @@ public abstract class Player extends Observer {
 		// for example is 123444567 is in the hand, a sub-optimal algorithm would play 1234567
 		// however, the optimal move is actually 123 444 567 because it allows you to play ALL the tiles
 		
+		System.out.println(runs);
+		System.out.println(sets);
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		
@@ -144,8 +146,6 @@ public abstract class Player extends Observer {
 					optimalLength = currentRunLength;
 					optimalMoves.add(currentRun);
 				}
-				
-				System.out.println(optimalLength);
 			}
 		}
 		
@@ -200,14 +200,14 @@ public abstract class Player extends Observer {
 						optimalMoves.add(currentSet);
 					}
 					
-					else if (possiblePlay < currentSetLength && possiblePlay > optimalLength) {
+					else if (possiblePlay <= currentSetLength && possiblePlay > optimalLength) {
 						optimalMoves.clear();
 						optimalLength = possiblePlay;
 						optimalMoves.add(currentSet);
 					}
 				}
 			}
-			
+		
 			executeMove();
 	}
 	

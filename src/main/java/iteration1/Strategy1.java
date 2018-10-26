@@ -12,6 +12,8 @@ public class Strategy1 extends Player {
 	@Override
 	public boolean turn() {
 		
+		this.displayHand();
+		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
 			executeMove();
 		}
@@ -20,9 +22,6 @@ public class Strategy1 extends Player {
 			
 			runs = this.findRuns();
 			sets = this.findSets();
-			
-			System.out.println(this.runs.toString());
-			System.out.println(this.sets.toString());
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
 				return emptyMessage();
