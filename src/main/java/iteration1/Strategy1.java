@@ -12,17 +12,23 @@ public class Strategy1 extends Player {
 	@Override
 	public boolean turn() {
 		
+		// If player has previously calculated optimalMoves, play those moves
+		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
 			executeMove();
 		}
 		
 		else {
 			
+			// If not find all runs and sets in Player's hand 
+			// If player has not broken 30, make sure they have to break 30
+			
 			runs = this.findRuns();
 			sets = this.findSets();
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
-				return emptyMessage();
+				emptyMessage();
+				return false;
 			}
 			
 			if (!this.is30) {
@@ -41,14 +47,18 @@ public class Strategy1 extends Player {
 				}
 				
 				if (runs.isEmpty() && sets.isEmpty()) {
-					return emptyMessage();
+					emptyMessage();
+					return false;
 				}
 				
+				// If Player is able to break 30, let them play their optimalMove
 				else {
 					optimalMove();
 				}
 			}
 			
+			
+			// If Player has already broken 30, let them play their optimalMove
 			else {
 				optimalMove();
 			}

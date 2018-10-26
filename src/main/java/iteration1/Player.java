@@ -242,7 +242,7 @@ public abstract class Player extends Observer {
 		this.is30 = true;
 	}
 	
-	public boolean emptyMessage() {
+	public void emptyMessage() {
 		
 		// this method is ran when player can't play anything
 		
@@ -255,7 +255,7 @@ public abstract class Player extends Observer {
 		}
 		this.displayHand();
 		Collections.sort(this.Hand);
-		return false;
+		
 	}
 	
 	public boolean isRun(List<Tile> list) {

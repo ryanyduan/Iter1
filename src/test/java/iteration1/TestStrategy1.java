@@ -14,6 +14,8 @@ public class TestStrategy1 extends TestCase {
 	}
 	
 	public void testStrat1No30() {
+		
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
 		s1.Hand.clear();
 		s1.Hand.add(B1);
 		s1.Hand.add(B2);
@@ -23,9 +25,13 @@ public class TestStrategy1 extends TestCase {
 		s1.Hand.add(B11);
 		s1.Hand.add(G11);
 		s1.Hand.add(O11);
+		
+		fakeMove.add(B11);
+		fakeMove.add(G11);
+		fakeMove.add(O11);
 		Collections.sort(s1.Hand);
 		s1.turn();
-		assertEquals(B1, s1.table.Board);
+		assertEquals(fakeMove, s1.table.Board.get(0));
 		}
 	
 	public void testStrat1Has30() {

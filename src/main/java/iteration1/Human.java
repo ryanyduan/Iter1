@@ -28,15 +28,7 @@ public class Human extends Player {
 		sets = this.findSets();
 		
 		if (runs.isEmpty() && sets.isEmpty()) {
-			System.out.println("You draw a card since there are no tiles to play.");
-			if (this.table.Deck.isEmpty()) {
-				System.out.println("Deck is empty. No card was drawn.");
-			}
-			else {
-				this.draw();
-			}
-			this.displayHand();
-			Collections.sort(this.Hand);
+			emptyMessage();
 			return false;
 		}
 		
@@ -84,7 +76,8 @@ public class Human extends Player {
 		}
 		
 		else {
-			return emptyMessage();
+			emptyMessage();
+			return false;
 		}
 		
 		return true;

@@ -15,7 +15,7 @@ public class TestSetandRun extends TestCase {
 		run.add(B2);
 		run.add(B3);
 		player.runs.add(run);
-		assertFalse(player.isRun(player.runs.get(0)));	
+		assertTrue(player.isRun(player.runs.get(0)));	
 	}
 	
 	public void testRunMoreThan3Tiles() {

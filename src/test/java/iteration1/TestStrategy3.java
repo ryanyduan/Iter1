@@ -25,8 +25,6 @@ public class TestStrategy3 extends TestCase {
 		s3.Hand.add(B2);
 		s3.turn();
 		assertFalse(s3.condition);
-		
-		
 	}
 	
 	Strategy3 s3 = new Strategy3(table, "S3");

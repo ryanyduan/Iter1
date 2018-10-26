@@ -29,7 +29,8 @@ public class Strategy3 extends Player {
 			else condition = false;
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
-				return emptyMessage();
+				emptyMessage();
+				return false;
 			}
 			
 			if (!this.is30) {
@@ -48,7 +49,8 @@ public class Strategy3 extends Player {
 				}
 				
 				if (runs.isEmpty() && sets.isEmpty()) {
-					return emptyMessage();
+					emptyMessage();
+					return false;
 				}
 				
 				else {
