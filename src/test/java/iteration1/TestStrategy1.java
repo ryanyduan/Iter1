@@ -137,33 +137,30 @@ public class TestStrategy1 extends TestCase {
 		s1.Hand.add(B1);
 		s1.Hand.add(B2);
 		s1.Hand.add(B3);
-		s1.Hand.add(B4);
 		s1.Hand.add(R4);
 		s1.Hand.add(G4);
-		s1.Hand.add(O4);
+		s1.Hand.add(B4);
 		s1.Hand.add(B5);
 		s1.Hand.add(B6);
+		s1.Hand.add(B7);
 		//123 444 456
-		// 123333
+		//optimal play should be this ^
 		Collections.sort(s1.Hand);
 		s1.turn();
 		fakeOptimalMove.add(B1);
 		fakeOptimalMove.add(B2);
 		fakeOptimalMove.add(B3);
-		fakeOptimalMove.add(B4);
 		
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 		
 		fakeOptimalMove.clear();
 		
-		fakeOptimalMove.add(B1);
-		fakeOptimalMove.add(B2);
-		fakeOptimalMove.add(B3);
-		fakeOptimalMove.add(B5);
-		fakeOptimalMove.add(B6);
+		fakeOptimalMove.add(R4);
+		fakeOptimalMove.add(B4);
+		fakeOptimalMove.add(G4);
 		
 		s1.turn();
-		assertEquals(fakeOptimalMove, table.Board.get(0));
+		assertEquals(fakeOptimalMove, table.Board.get(1));
 		
 	}
 	
@@ -207,6 +204,7 @@ public class TestStrategy1 extends TestCase {
 	Tile O5 = new Tile('O',5);
 	
 	Tile B42 = new Tile('B',4);
+	Tile B7 = new Tile('B',7);
 	
 	
 	Tile G3 = new Tile('G',3);

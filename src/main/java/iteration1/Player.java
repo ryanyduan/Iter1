@@ -141,7 +141,7 @@ public abstract class Player extends Observer {
 		}
 		
 		
-		// next possible difficult scenario is 12333345 where 3333 will be the longest but the best move is actually [{123}, {333}] or [{333, 345}]
+		// next possible difficult scenario is 123444567 where 1234567 will be the longest but the best move is actually [{123}, {444}, {5,6,7}] 
 		
 			if (!this.sets.isEmpty()) {
 				for (ArrayList<Tile> currentSet: sets) {
@@ -153,15 +153,31 @@ public abstract class Player extends Observer {
 						for (Tile currentTile: currentSet) {
 							for (ArrayList<Tile> run: this.runs) {
 								if (run.contains(currentTile)) {
-									System.out.println(run.toString());
+									Tile nextTile = null;
+									
 									int index = run.indexOf(currentTile);
 									ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
+									for (Tile t: run_copy) {
+										if (t.getRank() == currentTile.getRank())
+									}
 									run_copy.remove(currentTile);
 									if (isRun(run_copy.subList(0, index))) {
 										tilesRemoved += 1;
-										possibleRunsLength += run_copy.size();
-										System.out.println("possible run len " + possibleRunsLength );
+										possibleRunsLength += run_copy.subList(0,index).size();
+										System.out.println(possibleRunsLength);
 										possibleRuns.add(run);
+									}
+									for (Tile tile: run_copy) {
+										if (tile.getRank() == currentTile.getRank()+1) {
+											nextTile = tile;
+											break;
+										}
+									}
+									
+									int indexNext = run.indexOf(nextTile);
+									if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))))) {
+										possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))).size();
+										System.out.println(possibleRunsLength);
 									}
 								}
 							}
