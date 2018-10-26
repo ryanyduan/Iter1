@@ -32,7 +32,11 @@ public abstract class Player extends Observer {
 	public abstract boolean turn();
 
 	public ArrayList<ArrayList<Tile>> findRuns(){
-		// reset possible runs 
+		
+		// finds runs in player hand
+		// note that if 12345 is in the hand, findSets() will only return 12345
+		// it will not return 123, 234, 345, 2345, 1234
+
 		runs = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> matchedTiles = new ArrayList<Tile>();
 		char initialColour;
@@ -67,6 +71,10 @@ public abstract class Player extends Observer {
 	
 	public ArrayList<ArrayList<Tile>> findSets(){
 		
+		// finds sets in player hand
+		// note that if 4444 is in the hand, findSets() will only return 4444
+		// it will not return 444 444 444
+		
 		sets = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> matchedTiles = new ArrayList<Tile>();
 		
@@ -96,8 +104,12 @@ public abstract class Player extends Observer {
 	
 	public void optimalMove(){
 		
+		// this method is for parsing difficult situations where the optimal move for the AI isn't necessarily 
+		// the greedy solution of finding the longest run/set then playing it
+		// for example is 123444567 is in the hand, a sub-optimal algorithm would play 1234567
+		// however, the optimal move is actually 123 444 567 because it allows you to play ALL the tiles
+		
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
-		ArrayList<ArrayList<Tile>> currentOptimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		
 		if (!this.runs.isEmpty()) {
@@ -112,9 +124,6 @@ public abstract class Player extends Observer {
 							if (set.contains(currentTile)){
 								ArrayList<Tile> set_copy = new ArrayList<Tile>(set); //making a copy just in case remove() mutates the ArrayList
 								set_copy.remove(currentTile);
-									
-								// for example if we have 12345 but inside we have 333 444, if we play 12345 we wont be able to play 333,444 
-								//which is the optimal move
 									
 								if (!isSet(set_copy)) {
 									possibleSetsLength += set.size();
@@ -139,9 +148,6 @@ public abstract class Player extends Observer {
 				System.out.println(optimalLength);
 			}
 		}
-		
-		
-		// next possible difficult scenario is 123444567 where 1234567 will be the longest but the best move is actually [{123}, {444}, {5,6,7}] 
 		
 			if (!this.sets.isEmpty()) {
 				for (ArrayList<Tile> currentSet: sets) {
@@ -207,6 +213,11 @@ public abstract class Player extends Observer {
 	
 	public void executeMove() {
 		
+		// this method is the latter part of optimalMove() and turn()
+		// it marks newly played tiles with *
+		// it then removes the played tiled from the player's hand
+		// if player hasn't broken initial 30, this method will break it for it
+		
 		for (Tile t: optimalMoves.get(0)) {
 			t.justPlayed = true;
 		}
@@ -232,6 +243,9 @@ public abstract class Player extends Observer {
 	}
 	
 	public boolean emptyMessage() {
+		
+		// this method is ran when player can't play anything
+		
 		System.out.println(this.getName() + " draws a card since there are no tiles to play.");
 		if (this.table.Deck.isEmpty()) {
 			System.out.println("Deck is empty. No card was drawn.");
@@ -245,6 +259,8 @@ public abstract class Player extends Observer {
 	}
 	
 	public boolean isRun(List<Tile> list) {
+		
+//		this method checks if an existing run is still a run even after taking out a certain tile
 		
 		if (list.size() < 3) return false;
 		
