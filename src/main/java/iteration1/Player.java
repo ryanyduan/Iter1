@@ -148,6 +148,7 @@ public abstract class Player extends Observer {
 					possibleRuns = new ArrayList<ArrayList<Tile>>();
 					possibleRunsLength = 0;
 					int tilesRemoved = 0;
+					Tile currentTileKeep = null;
 					int currentSetLength = currentSet.size();
 					if (!this.runs.isEmpty()) {
 						for (Tile currentTile: currentSet) {
@@ -156,20 +157,13 @@ public abstract class Player extends Observer {
 									if (currentSetLength == 3) {
 										Tile nextTile = null;
 										ArrayList<Tile> run_copy = new ArrayList<Tile>(run);
-										for (Tile t: run_copy) {
-											if (t.getRank() == currentTile.getRank()) {
-												currentTile = t;
-											}
-										}
 										int index = run.indexOf(currentTile);
-										System.out.println("INDEX: "+index);
-										run_copy.remove(currentTile);
-										System.out.println(run_copy.subList(0,index).toString());
+		
 										if (isRun(run_copy.subList(0, index))) {
 											tilesRemoved += 1;
 											possibleRunsLength += run_copy.subList(0,index).size();
-											System.out.println("YO" + possibleRunsLength);
-											possibleRuns.add(run);
+											ArrayList<Tile> tempListBefore = new ArrayList<Tile>(run_copy.subList(0,index));
+											possibleRuns.add(tempListBefore);
 										}
 										for (Tile tile: run_copy) {
 											if (tile.getRank() == currentTile.getRank()+1) {
@@ -179,24 +173,30 @@ public abstract class Player extends Observer {
 										}
 										
 										int indexNext = run.indexOf(nextTile);
-										if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))))) {
-											possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))).size();
-											System.out.println(possibleRunsLength);
+										int indexMin = run_copy.indexOf(run_copy.get(run_copy.size()-1));
+										if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1))) {
+											possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1).size();
+											ArrayList<Tile> tempListAfter = new ArrayList<Tile>(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1));
+											possibleRuns.add(tempListAfter);
 										}
 					
 									}
 								}
 							}
+							currentTileKeep = currentTile;
 						}
 						
 					}
 					
 					int possiblePlay = possibleRunsLength + (currentSetLength - tilesRemoved);
 					
-					if ((possibleRunsLength + (currentSetLength - tilesRemoved) > currentSetLength ) && possiblePlay > optimalLength) {
+					if (possiblePlay > currentSetLength && possiblePlay > optimalLength) {
 						optimalMoves.clear();
+						ArrayList<Tile> set_copy = new ArrayList<Tile>(currentSet);
+						set_copy.remove(currentTileKeep);
 						optimalLength = possiblePlay;
 						optimalMoves = possibleRuns;
+						optimalMoves.add(set_copy);
 					}
 					
 					else if (possiblePlay < currentSetLength && possiblePlay > optimalLength) {

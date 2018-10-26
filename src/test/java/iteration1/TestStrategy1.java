@@ -156,9 +156,9 @@ public class TestStrategy1 extends TestCase {
 		
 		fakeOptimalMove.clear();
 		
-		fakeOptimalMove.add(R4);
-		fakeOptimalMove.add(B4);
-		fakeOptimalMove.add(G4);
+		fakeOptimalMove.add(B5);
+		fakeOptimalMove.add(B6);
+		fakeOptimalMove.add(B7);
 		
 		s1.turn();
 		assertEquals(fakeOptimalMove, table.Board.get(1));
