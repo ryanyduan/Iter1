@@ -2,6 +2,7 @@ package iteration1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> optimalMoves;
 	public boolean is30 = false;
 	public int possibleSetsLength;
-	public ArrayList<Tile> possibleTiles;
+	public HashMap<Integer, ArrayList<Tile>> possibleTiles;
 	public ArrayList<ArrayList<Tile>> possibleSets;
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;

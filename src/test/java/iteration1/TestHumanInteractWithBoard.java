@@ -49,9 +49,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 		table.Board.add(fakeMove);
 		human.turn();
 		assertEquals(possibleTiles, human.possibleTiles);
-		
-		
-		
+
 	}
 
 }

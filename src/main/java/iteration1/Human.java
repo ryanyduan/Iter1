@@ -29,6 +29,14 @@ public class Human extends Player {
 		sets = this.findSets();
 		
 		possibleTiles = this.table.getPossibleTiles();
+		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+			Entry<Integer, ArrayList<Tile>> choice = it.next();
+			for (Tile t: choice.getValue()) {
+				if (!this.Hand.contains(t)) {
+					choice.getValue().remove(t);
+				}
+			}
+		}
 		
 		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 			emptyMessage();
@@ -67,9 +75,9 @@ public class Human extends Player {
 			counter++;
 		}
 		
-		for (Tile tile: possibleTiles) {
-			boardTurnOptions.put(counter, tile);
-			counter++;
+		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+			Entry<Integer, ArrayList<Tile>> choice = it.next();
+			turnOptions.put(choice.getKey()+counter, choice.getValue());
 		}
 		
 		if (!turnOptions.isEmpty()) {

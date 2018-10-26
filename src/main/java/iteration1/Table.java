@@ -2,6 +2,7 @@ package iteration1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Table {
@@ -9,6 +10,7 @@ public class Table {
 	private static char[] COLORS = {'O','G','R','B'};
 	public ArrayList<Tile> Deck;
 	public ArrayList<ArrayList<Tile>> Board;
+	public HashMap<Integer, ArrayList<Tile>> possibleMoves;
 	public ArrayList<Tile> possibleTiles;
 	private List<Observer> observers;
 	private int lowestTilesInHand;
@@ -44,10 +46,11 @@ public class Table {
 		return boardMelds;
 	}
 	
-	public ArrayList<Tile> getPossibleTiles(){
-		possibleTiles = new ArrayList<Tile>();
-		
+	public HashMap<Integer, ArrayList<Tile>> getPossibleTiles(){
+		possibleMoves = new HashMap<Integer, ArrayList<Tile>>();
+		int index = 0;
 		for (ArrayList<Tile> meld: Board) {
+			possibleTiles = new ArrayList<Tile>();
 			if (isRun(meld)) {
 				char currentColour = meld.get(0).getColour();
 				if(meld.get(0).getRank() > 1) {
@@ -61,8 +64,10 @@ public class Table {
 					possibleTiles.add(new Tile(currentColour, oneHigherRank));
 				}
 			}
+			possibleMoves.put(index, possibleTiles);
+			index++;
 		}
-		return possibleTiles;
+		return possibleMoves;
 	}
 	
 	public int getState() {
