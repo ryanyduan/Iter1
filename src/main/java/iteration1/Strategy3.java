@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Strategy3 extends Player {
+	
+	public boolean condition = false;
 
 	public Strategy3(Table table, String name) {
 		super(table, name);
 	}
 
 	@Override
-public boolean turn() {
+	public boolean turn() {
 		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
 			executeMove();
@@ -20,6 +22,10 @@ public boolean turn() {
 			
 			runs = this.findRuns();
 			sets = this.findSets();
+			
+			if (this.table.getState() <= this.Hand.size()-3) {
+				condition=true;
+			}
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
 				return emptyMessage();

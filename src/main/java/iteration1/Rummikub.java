@@ -3,8 +3,8 @@ package iteration1;
 public class Rummikub {	
 	
 	public static Table table;
-	public static Player human;
-	public static Player s1;
+	public static Human human;
+	public static Strategy1 s1;
 	public static Player[] players;
 	public static Player currentPlayer;
 	public static boolean win;

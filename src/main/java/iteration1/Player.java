@@ -8,7 +8,6 @@ import java.util.List;
 public abstract class Player extends Observer {
 	
 	private String name;
-	public ArrayList<Tile> Hand;
 	public ArrayList<ArrayList<Tile>> runs;
 	public ArrayList<ArrayList<Tile>> sets;
 	public ArrayList<ArrayList<Tile>> optimalMoves;
@@ -17,6 +16,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> possibleSets;
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;
+	public int lowestTilesInHand;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -307,12 +307,6 @@ public abstract class Player extends Observer {
 		}
 		System.out.println(returnHand);
 		return returnHand;
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public String getName() {

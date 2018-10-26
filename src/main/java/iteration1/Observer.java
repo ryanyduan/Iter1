@@ -1,9 +1,11 @@
 package iteration1;
 
+import java.util.ArrayList;
+
 public abstract class Observer {
 	
 	protected Table table;
-	public abstract void update();
+	public ArrayList<Tile> Hand;
 	
 }
 

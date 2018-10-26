@@ -10,6 +10,7 @@ public class Table {
 	public ArrayList<Tile> Deck;
 	public ArrayList<ArrayList<Tile>> Board;
 	private List<Observer> observers;
+	private int lowestTilesInHand;
 	
 	public Table() {
 		observers = new ArrayList<Observer>();
@@ -42,15 +43,15 @@ public class Table {
 		return boardMelds;
 	}
 	
+	public int getState() {
+		lowestTilesInHand = observers.get(0).Hand.size();
+		for (Observer o: this.observers) {
+			if (o.Hand.size() < lowestTilesInHand) lowestTilesInHand = o.Hand.size();
+		}
+		return lowestTilesInHand;
+	}
 	public void attach(Observer observer){
 	      observers.add(observer);	
-	   }
+	}
 	
-	public void notifyAllObservers(){
-	      for (Observer observer : observers) {
-	         observer.update();
-	      }
-	   } 
-	
-
 }
