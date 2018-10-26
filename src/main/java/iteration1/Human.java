@@ -13,6 +13,7 @@ public class Human extends Player {
 	public HashMap<Integer, Tile> boardTurnOptions;
 	public ArrayList<Tile> played;
 	public int choice = 0;
+	public int manualChoice;
 
 	public Human(Table table, String name) {
 		super(table, name);
@@ -20,6 +21,8 @@ public class Human extends Player {
 
 	@Override
 	public boolean turn() {
+		
+		manualChoice = -1;
 		
 		//Finds all melds.  If no melds, draw a card and end turn.
 		//If player has not broken initial 30 points, require they play a meld with 30 points
@@ -92,6 +95,13 @@ public class Human extends Player {
 				choice = scan.nextInt();
 			}
 			
+			scan.close();
+			
+			if (choice >= counter) {
+				manualChoice = choice-counter;
+				System.out.println(manualChoice);
+			}
+			
 			executeMove();
 		}
 		
@@ -117,7 +127,10 @@ public class Human extends Player {
 			t.justPlayed = true;
 		}
 		
-		table.Board.add(played);
+		if (manualChoice != -1) {
+			table.Board.get(manualChoice).add(played.get(0));
+		}
+		else table.Board.add(played);
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
 			Tile toRemove = tiles.next();
