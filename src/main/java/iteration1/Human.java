@@ -32,7 +32,7 @@ public class Human extends Player {
 		sets = this.findSets();
 		
 		possibleTiles = this.table.getPossibleTiles();
-		System.out.println(possibleTiles.toString());
+
 		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 			Entry<Integer, ArrayList<Tile>> choice = it.next();
 			ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
