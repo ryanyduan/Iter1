@@ -20,6 +20,9 @@ public class TestHumanInteractWithBoard extends TestCase {
 	Tile R5 = new Tile('R',5);
 	Tile G5 = new Tile('G',5);
 	Tile O5 = new Tile('O',5);
+	Tile G2 = new Tile('G',2);
+	Tile O2 = new Tile('O',2);
+	Tile R2 = new Tile('R',2);
 	
 	Tile B42 = new Tile('B',4);
 	Tile B7 = new Tile('B',7);
@@ -73,6 +76,26 @@ public class TestHumanInteractWithBoard extends TestCase {
 		table.Board.add(fakeMove1);
 		ArrayList<Tile> oldMove = new ArrayList<Tile>(table.Board.get(0));
 		oldMove.add(B5);
+		human.turn();
+		assertEquals(table.Board.get(0), oldMove);
+	}
+	
+	public void testSetOnBoard() {
+		human.is30 = true;
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
+		fakeMove.add(B2);
+		fakeMove.add(G2);
+		fakeMove.add(O2);
+		human.Hand.clear();
+		human.Hand.add(R2);
+		Collections.sort(human.Hand);
+		
+		possibleTiles.add(R2);
+		
+		table.Board.add(fakeMove);
+		ArrayList<Tile> oldMove = new ArrayList<Tile>(table.Board.get(0));
+		oldMove.add(R5);
 		human.turn();
 		assertEquals(table.Board.get(0), oldMove);
 	}
