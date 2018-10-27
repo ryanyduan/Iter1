@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Human extends Player {
 	
 	public HashMap<Integer, ArrayList<Tile>> turnOptions;
-	public HashMap<Integer, Tile> boardTurnOptions;
 	public ArrayList<Tile> played;
 	public int choice = 0;
 	public int manualChoice;
@@ -41,6 +40,8 @@ public class Human extends Player {
 				for (Tile handTile: this.Hand) {
 					if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
 						in = true;
+						possibleTiles.get(choice.getKey()).remove(t);
+						possibleTiles.get(choice.getKey()).add(handTile);
 						break;
 					}
 				}
@@ -130,7 +131,7 @@ public class Human extends Player {
 		// Displays Table
 		
 		played = turnOptions.remove(choice);
-		
+	
 		for (Tile t: played) {
 			t.justPlayed = true;
 		}
@@ -155,7 +156,7 @@ public class Human extends Player {
 			Tile toRemove = tiles.next();
 	
 			if (played.contains(toRemove)) {
-				System.out.println("yo");
+				System.out.println("done");
 				tiles.remove();
 			}
 		}
