@@ -35,14 +35,17 @@ public class Human extends Player {
 		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 			Entry<Integer, ArrayList<Tile>> choice = it.next();
 			for (Tile t: choice.getValue()) {
-				if (!this.Hand.contains(t)) {
-					choice.getValue().remove(t);
+				for (Tile handTile: this.Hand) {
+					if (!(handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour())){
+						choice.getValue().remove(handTile);
+					}
 				}
 			}
 		}
 		
 		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 			emptyMessage();
+			over = true;
 			return false;
 		}
 		
@@ -80,7 +83,9 @@ public class Human extends Player {
 		
 		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 			Entry<Integer, ArrayList<Tile>> choice = it.next();
-			turnOptions.put(choice.getKey()+counter, choice.getValue());
+			if (!choice.getValue().isEmpty()) {
+				turnOptions.put(choice.getKey()+counter, choice.getValue());
+			}
 		}
 		
 		if (!turnOptions.isEmpty()) {
@@ -95,11 +100,8 @@ public class Human extends Player {
 				choice = scan.nextInt();
 			}
 			
-			scan.close();
-			
 			if (choice >= counter) {
 				manualChoice = choice-counter;
-				System.out.println(manualChoice);
 			}
 			
 			executeMove();
@@ -107,6 +109,7 @@ public class Human extends Player {
 		
 		else {
 			emptyMessage();
+			over = true;
 			return false;
 		}
 		
@@ -147,6 +150,8 @@ public class Human extends Player {
 		for (Tile t: played) {
 			t.justPlayed = false;
 		}
+		
+		over = false;
 	}	
 	
 	public void printMap(HashMap map) {

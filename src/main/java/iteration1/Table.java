@@ -57,11 +57,15 @@ public class Table {
 					int oneLowerRank = meld.get(0).getRank()-1;
 					int oneHigherRank = meld.get(meld.size()-1).getRank() + 1;
 					possibleTiles.add(new Tile(currentColour, oneLowerRank));
-					possibleTiles.add(new Tile(currentColour, oneHigherRank));
+					if (oneHigherRank<=14) {
+						possibleTiles.add(new Tile(currentColour, oneHigherRank));
+					}
 				}
 				else {
 					int oneHigherRank = meld.get(meld.size()-1).getRank() + 1;
-					possibleTiles.add(new Tile(currentColour, oneHigherRank));
+					if (oneHigherRank<=14) {
+						possibleTiles.add(new Tile(currentColour, oneHigherRank));
+					}
 				}
 			}
 			possibleMoves.put(index, possibleTiles);

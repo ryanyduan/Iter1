@@ -28,6 +28,7 @@ public class Rummikub {
 		
 		int counter = 0;
 		while (!win) {
+			
 			currentPlayer = players[counter%3];
 			
 			while (currentPlayer.turn()) { //this line will also execute the player's turn
@@ -37,7 +38,13 @@ public class Rummikub {
 					break;
 				}
 			}
+			
 			counter++; //next player's turn
+			if (players[0].over && players[1].over && players[2].over && table.Deck.isEmpty()) {
+				System.out.println("No cards left and no moves left for any player to play.  Game over with no winner.");
+				win = true;
+				break;
+			}
 		}
 	}
 		

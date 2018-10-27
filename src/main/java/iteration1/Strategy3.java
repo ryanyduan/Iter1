@@ -30,6 +30,7 @@ public class Strategy3 extends Player {
 			
 			if (runs.isEmpty() && sets.isEmpty()) {
 				emptyMessage();
+				over = true;
 				return false;
 			}
 			
@@ -50,18 +51,27 @@ public class Strategy3 extends Player {
 				
 				if (runs.isEmpty() && sets.isEmpty()) {
 					emptyMessage();
+					over = true;
 					return false;
 				}
 				
 				else {
 					if (condition) optimalMove();
-					else emptyMessage();
+					else {
+						emptyMessage();
+						over = true;
+						return false;
+					}
 				}
 			}
 			
 			else {
 				if (condition) optimalMove();
-				else emptyMessage();
+				else {
+					emptyMessage();
+					over = true;
+					return false;
+				}
 			}
 				
 		}

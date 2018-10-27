@@ -1,6 +1,7 @@
 package iteration1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import junit.framework.TestCase;
 
@@ -49,7 +50,31 @@ public class TestHumanInteractWithBoard extends TestCase {
 		table.Board.add(fakeMove);
 		human.turn();
 		assertEquals(possibleTiles, human.possibleTiles);
-
+	}
+	
+	public void test2SetsonBoard() {
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		ArrayList<Tile> fakeMove1 = new ArrayList<Tile>();
+		ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
+		human.is30 = true;
+		fakeMove.add(B2);
+		fakeMove.add(B3);
+		fakeMove.add(B4);
+		fakeMove1.add(R3);
+		fakeMove1.add(R4);
+		fakeMove1.add(R5);
+		human.Hand.add(B1);
+		Collections.sort(human.Hand);
+		
+		possibleTiles.add(B1);
+		possibleTiles.add(B5);
+		
+		table.Board.add(fakeMove);
+		table.Board.add(fakeMove1);
+		ArrayList<Tile> oldMove = new ArrayList<Tile>(table.Board.get(0));
+		oldMove.add(B5);
+		human.turn();
+		assertEquals(table.Board.get(0), oldMove);
 	}
 
 }

@@ -19,6 +19,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;
 	public int lowestTilesInHand;
+	public boolean over = false;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -111,8 +112,6 @@ public abstract class Player extends Observer {
 		// for example is 123444567 is in the hand, a sub-optimal algorithm would play 1234567
 		// however, the optimal move is actually 123 444 567 because it allows you to play ALL the tiles
 		
-		System.out.println(runs);
-		System.out.println(sets);
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
 		
@@ -143,7 +142,7 @@ public abstract class Player extends Observer {
 					optimalLength = possibleSetsLength;
 					optimalMoves = possibleSets;
 				}
-				else if (possibleSetsLength < currentRunLength && currentRunLength > optimalLength){
+				else if (possibleSetsLength <= currentRunLength && currentRunLength > optimalLength){
 					optimalMoves.clear();
 					optimalLength = currentRunLength;
 					optimalMoves.add(currentRun);
@@ -180,17 +179,17 @@ public abstract class Player extends Observer {
 										}
 										
 										int indexNext = run.indexOf(nextTile);
-										if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1))) {
-											possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1).size();
-											ArrayList<Tile> tempListAfter = new ArrayList<Tile>(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1));
-											possibleRuns.add(tempListAfter);
+										if (indexNext != -1) {
+											if (isRun(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1))) {
+												possibleRunsLength += run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1).size();
+												ArrayList<Tile> tempListAfter = new ArrayList<Tile>(run_copy.subList(indexNext, run_copy.indexOf(run_copy.get(run_copy.size()-1))+1));
+												possibleRuns.add(tempListAfter);
+											}
 										}
-					
 									}
 								}
 							}
 						}
-						
 					}
 					
 					int possiblePlay = possibleRunsLength + (currentSetLength - tilesRemoved);
@@ -225,6 +224,7 @@ public abstract class Player extends Observer {
 		}
 		
 		ArrayList<Tile> tempPlayed = optimalMoves.get(0);
+		System.out.println(this.getName() + " plays: " + optimalMoves.get(0));
 		this.table.Board.add(optimalMoves.remove(0));
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
@@ -242,6 +242,7 @@ public abstract class Player extends Observer {
 		}
 		
 		this.is30 = true;
+		over = false;
 	}
 	
 	public void emptyMessage() {
@@ -257,7 +258,6 @@ public abstract class Player extends Observer {
 		}
 		this.displayHand();
 		Collections.sort(this.Hand);
-		
 	}
 	
 	public boolean isRun(List<Tile> list) {
@@ -279,7 +279,6 @@ public abstract class Player extends Observer {
 		if ((n / 2.0) * (2*list.get(0).getRank() + (list.size()-1)) != tryRunSum) return false;
 		
 		return true;
-		
 	}
 	
 	public boolean isSet(ArrayList<Tile> trySet) {
