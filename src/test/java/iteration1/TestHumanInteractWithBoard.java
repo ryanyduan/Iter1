@@ -95,7 +95,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 		
 		table.Board.add(fakeMove);
 		ArrayList<Tile> oldMove = new ArrayList<Tile>(table.Board.get(0));
-		oldMove.add(R5);
+		oldMove.add(R2);
 		human.turn();
 		assertEquals(table.Board.get(0), oldMove);
 	}

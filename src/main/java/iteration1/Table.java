@@ -68,6 +68,30 @@ public class Table {
 					}
 				}
 			}
+			// if it's not a run then it's a set
+			else {
+				if (meld.size() == 3) {
+					boolean[] colors = new boolean[4];
+					boolean red = false;
+					boolean blue = false;
+					boolean green = false;
+					boolean orange = false;
+					
+					
+					for (Tile t: meld) {
+						if (t.getColour() == 'R') red = true;
+						else if (t.getColour() == 'B') blue = true;
+						else if (t.getColour() == 'G') green = true;
+						else if (t.getColour() == 'O') orange = true;
+					}
+					
+					int setRank = meld.get(0).getRank();
+					if (!red) possibleTiles.add(new Tile('R', setRank));
+					if (!blue) possibleTiles.add(new Tile('B', setRank));
+					if (!green) possibleTiles.add(new Tile('G', setRank));
+					if (!orange) possibleTiles.add(new Tile('O', setRank));
+				}
+			}
 		
 				possibleMoves.put(index, possibleTiles);
 				index++;
