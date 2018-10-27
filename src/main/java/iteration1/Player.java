@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class Player extends Observer {
 	
@@ -14,7 +15,7 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> optimalMoves;
 	public boolean is30 = false;
 	public int possibleSetsLength;
-	public HashMap<Integer, ArrayList<Tile>> possibleTiles;
+	public ConcurrentHashMap<Integer, ArrayList<Tile>> possibleTiles;
 	public ArrayList<ArrayList<Tile>> possibleSets;
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;
@@ -256,8 +257,9 @@ public abstract class Player extends Observer {
 		else {
 			this.draw();
 		}
-		this.displayHand();
 		Collections.sort(this.Hand);
+		this.displayHand();
+		this.table.displayBoard();
 	}
 	
 	public boolean isRun(List<Tile> list) {

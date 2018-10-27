@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Table {
 	
 	private static char[] COLORS = {'O','G','R','B'};
 	public ArrayList<Tile> Deck;
 	public ArrayList<ArrayList<Tile>> Board;
-	public HashMap<Integer, ArrayList<Tile>> possibleMoves;
+	public ConcurrentHashMap<Integer, ArrayList<Tile>> possibleMoves;
 	public ArrayList<Tile> possibleTiles;
 	private List<Observer> observers;
 	private int lowestTilesInHand;
@@ -46,8 +47,8 @@ public class Table {
 		return boardMelds;
 	}
 	
-	public HashMap<Integer, ArrayList<Tile>> getPossibleTiles(){
-		possibleMoves = new HashMap<Integer, ArrayList<Tile>>();
+	public ConcurrentHashMap<Integer, ArrayList<Tile>> getPossibleTiles(){
+		possibleMoves = new ConcurrentHashMap<Integer, ArrayList<Tile>>();
 		int index = 0;
 		for (ArrayList<Tile> meld: Board) {
 			possibleTiles = new ArrayList<Tile>();
@@ -68,8 +69,11 @@ public class Table {
 					}
 				}
 			}
-			possibleMoves.put(index, possibleTiles);
-			index++;
+		
+				possibleMoves.put(index, possibleTiles);
+				index++;
+			
+			
 		}
 		return possibleMoves;
 	}

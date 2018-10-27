@@ -32,13 +32,20 @@ public class Human extends Player {
 		sets = this.findSets();
 		
 		possibleTiles = this.table.getPossibleTiles();
+		System.out.println(possibleTiles.toString());
 		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 			Entry<Integer, ArrayList<Tile>> choice = it.next();
-			for (Tile t: choice.getValue()) {
+			ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+			for (Tile t: valueCopy) {
+				boolean in = false;
 				for (Tile handTile: this.Hand) {
-					if (!(handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour())){
-						choice.getValue().remove(handTile);
+					if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+						in = true;
+						break;
 					}
+				}
+				if (!in) {
+					possibleTiles.get(choice.getKey()).remove(t);
 				}
 			}
 		}
@@ -131,8 +138,21 @@ public class Human extends Player {
 		}
 		
 		if (manualChoice != -1) {
-			table.Board.get(manualChoice).add(played.get(0));
+			if (played.get(0).getRank() < table.Board.get(manualChoice).get(0).getRank()) {
+				System.out.println("option1");
+				table.Board.get(manualChoice).add(0, played.get(0));
+			}
+			else {
+				System.out.println("option2");
+				table.Board.get(manualChoice).add(played.get(0));
+			}
+			
+			if (played.size() == 2) {
+				System.out.println("option3");
+				table.Board.get(manualChoice).add(played.get(1));
+			}
 		}
+		
 		else table.Board.add(played);
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
