@@ -156,7 +156,6 @@ public class Human extends Player {
 			Tile toRemove = tiles.next();
 	
 			if (played.contains(toRemove)) {
-				System.out.println("done");
 				tiles.remove();
 			}
 		}
