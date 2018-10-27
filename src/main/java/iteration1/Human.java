@@ -75,7 +75,6 @@ public class Human extends Player {
 		}
 		
 		turnOptions = new HashMap<Integer, ArrayList<Tile>>();
-		boardTurnOptions = new HashMap<Integer, Tile>();
 		
 		int counter = 0;
 		for (ArrayList<Tile> run: runs) {
@@ -98,7 +97,6 @@ public class Human extends Player {
 		if (!turnOptions.isEmpty()) {
 			System.out.println("Here are your options of melds to play");
 			printMap(turnOptions);
-			printMap(boardTurnOptions);
 			System.out.println("Choose the number corresponding to the tiles you want to play.");
 			Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
@@ -139,25 +137,25 @@ public class Human extends Player {
 		
 		if (manualChoice != -1) {
 			if (played.get(0).getRank() < table.Board.get(manualChoice).get(0).getRank()) {
-				System.out.println("option1");
 				table.Board.get(manualChoice).add(0, played.get(0));
 			}
 			else {
-				System.out.println("option2");
 				table.Board.get(manualChoice).add(played.get(0));
 			}
 			
 			if (played.size() == 2) {
-				System.out.println("option3");
 				table.Board.get(manualChoice).add(played.get(1));
 			}
 		}
 		
 		else table.Board.add(played);
 		
+
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
 			Tile toRemove = tiles.next();
+	
 			if (played.contains(toRemove)) {
+				System.out.println("yo");
 				tiles.remove();
 			}
 		}
