@@ -212,6 +212,7 @@ public class TestStrategy1 extends TestCase {
 	
 	public void testInteractionWithBoard1Run() {
 		s1.Hand.clear();
+		s1.is30 = true;
 		s1.Hand.add(B1);
 		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
 		ArrayList<Tile> possibleMoves = new ArrayList<Tile>();
@@ -224,6 +225,7 @@ public class TestStrategy1 extends TestCase {
 		possibleMoves.add(B1);
 		
 		s1.turn();
+		
 		assertEquals(table.Board.get(0).get(0), possibleMoves.get(0));
 	}
 	

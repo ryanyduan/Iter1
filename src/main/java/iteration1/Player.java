@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class Player extends Observer {
@@ -20,6 +21,7 @@ public abstract class Player extends Observer {
 	public int possibleRunsLength;
 	public int lowestTilesInHand;
 	public boolean over = false;
+	public int tableTileIndex = 0;
 
 	public Player(Table table, String name) {
 		this.Hand = new ArrayList<Tile>();
@@ -114,6 +116,7 @@ public abstract class Player extends Observer {
 		
 		optimalMoves = new ArrayList<ArrayList<Tile>>();
 		int optimalLength = 0;
+		tableTileIndex = 0;
 		
 		if (!this.runs.isEmpty()) {
 			for (ArrayList<Tile> currentRun: this.runs) {
@@ -208,7 +211,36 @@ public abstract class Player extends Observer {
 					}
 				}
 			}
-		
+			
+			// if there are no runs nor sets, then try to play individual tiles
+			if (optimalLength == 0) {
+
+				for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+					Entry<Integer, ArrayList<Tile>> choice = it.next();
+					ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+					for (Tile t: valueCopy) {
+						boolean in = false;
+						for (Tile handTile: this.Hand) {
+							if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+								in = true;
+								possibleTiles.get(choice.getKey()).remove(t);
+								possibleTiles.get(choice.getKey()).add(handTile);
+								break;
+							}
+						}
+						if (!in) {
+							possibleTiles.get(choice.getKey()).remove(t);
+						}
+					}
+				}
+				
+				if (!possibleTiles.isEmpty()) {
+					tableTileIndex = (int) possibleTiles.keySet().toArray()[0];
+					optimalMoves.clear();
+					optimalMoves.add(possibleTiles.get(0));
+				}
+			}
+			
 			executeMove();
 	}
 	
@@ -225,7 +257,15 @@ public abstract class Player extends Observer {
 		
 		ArrayList<Tile> tempPlayed = optimalMoves.get(0);
 		System.out.println(this.getName() + " plays: " + optimalMoves.get(0));
-		this.table.Board.add(optimalMoves.remove(0));
+		
+		if (optimalMoves.get(0).size() == 1) {
+			if (optimalMoves.get(0).get(0).getRank() < table.Board.get(tableTileIndex).get(0).getRank()){
+				this.table.Board.get(tableTileIndex).add(0, optimalMoves.remove(0).remove(0));
+			}
+			else this.table.Board.get(tableTileIndex).add(optimalMoves.remove(0).remove(0));
+		}
+		
+		else this.table.Board.add(optimalMoves.remove(0));
 		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
 			Tile toRemove = tiles.next();

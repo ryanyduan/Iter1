@@ -96,7 +96,6 @@ public class Table {
 				possibleMoves.put(index, possibleTiles);
 				index++;
 			
-			
 		}
 		return possibleMoves;
 	}

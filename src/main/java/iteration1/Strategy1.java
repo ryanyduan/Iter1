@@ -25,8 +25,9 @@ public class Strategy1 extends Player {
 			
 			runs = this.findRuns();
 			sets = this.findSets();
+			possibleTiles = this.table.getPossibleTiles();
 			
-			if (runs.isEmpty() && sets.isEmpty()) {
+			if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 				emptyMessage();
 				over = true;
 				return false;

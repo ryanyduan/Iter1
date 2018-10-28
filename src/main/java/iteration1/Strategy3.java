@@ -22,13 +22,14 @@ public class Strategy3 extends Player {
 			
 			runs = this.findRuns();
 			sets = this.findSets();
+			possibleTiles = this.table.getPossibleTiles();
 			
 			if (this.table.getState() <= this.Hand.size()-3) {
 				condition=true;
 			}
 			else condition = false;
 			
-			if (runs.isEmpty() && sets.isEmpty()) {
+			if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 				emptyMessage();
 				over = true;
 				return false;
