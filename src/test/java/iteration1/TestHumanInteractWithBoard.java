@@ -103,6 +103,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 	public void testTwoSEtsOnBoard() {
 		human.is30 = true;
 		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		ArrayList<Tile> fakeMove1 = new ArrayList<Tile>();
 		ArrayList<Tile> possibleTiles = new ArrayList<Tile>();
 		fakeMove.add(B2);
 		fakeMove.add(G2);
@@ -116,19 +117,18 @@ public class TestHumanInteractWithBoard extends TestCase {
 		table.Board.add(fakeMove);
 		ArrayList<Tile> oldMove = new ArrayList<Tile>(table.Board.get(0));
 		oldMove.add(R2);
+		
+		human.Hand.add(G4);
+		fakeMove1.add(B4);
+		fakeMove1.add(O4);
+		fakeMove1.add(R4);
+		table.Board.add(fakeMove1);
+		ArrayList<Tile> oldMove2 = new ArrayList<Tile>(table.Board.get(1));
+		oldMove2.add(G4);
 		human.turn();
 		assertEquals(table.Board.get(0), oldMove);
-		
-//		human.Hand.add(G4);
-//		fakeMove.clear();
-//		fakeMove.add(B4);
-//		fakeMove.add(O4);
-//		fakeMove.add(R4);
-//		table.Board.add(fakeMove);
-//		ArrayList<Tile> oldMove2 = new ArrayList<Tile>(table.Board.get(1));
-//		oldMove2.add(G4);
-//		human.turn();
-//		assertEquals(table.Board.get(1), oldMove2);
+		human.turn();
+		assertEquals(table.Board.get(1), oldMove2);
 		
 		
 		
