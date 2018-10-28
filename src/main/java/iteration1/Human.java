@@ -172,13 +172,13 @@ public class Human extends Player {
 		over = false;
 	}	
 	
-	public void printMap(HashMap map) {
+	public void printMap(HashMap<Integer, ArrayList<Tile>> map) {
 		
 		// Print each of the player's possible melds he/she can play
 		
-	    Iterator<Entry> it = map.entrySet().iterator();
+	    Iterator<Entry<Integer, ArrayList<Tile>>> it = map.entrySet().iterator();
 	    while (it.hasNext()) {
-	        HashMap.Entry pair = (HashMap.Entry)it.next();
+	        HashMap.Entry<Integer, ArrayList<Tile>> pair = (Entry<Integer, ArrayList<Tile>>)it.next();
 	        System.out.println(pair.getKey() + " = " + pair.getValue());
 	    }
 	}

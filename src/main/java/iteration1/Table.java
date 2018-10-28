@@ -71,7 +71,7 @@ public class Table {
 			// if it's not a run then it's a set
 			else {
 				if (meld.size() == 3) {
-					boolean[] colors = new boolean[4];
+				
 					boolean red = false;
 					boolean blue = false;
 					boolean green = false;

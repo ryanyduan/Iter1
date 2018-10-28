@@ -128,10 +128,7 @@ public class TestHumanInteractWithBoard extends TestCase {
 		human.turn();
 		assertEquals(table.Board.get(0), oldMove);
 		human.turn();
-		assertEquals(table.Board.get(1), oldMove2);
-		
-		
-		
+		assertEquals(table.Board.get(1), oldMove2);	
 	}
 
 }
