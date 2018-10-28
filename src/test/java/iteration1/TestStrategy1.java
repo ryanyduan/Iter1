@@ -210,6 +210,23 @@ public class TestStrategy1 extends TestCase {
 		assertEquals(fakeOptimalMove, table.Board.get(0));
 	}
 	
+	public void testInteractionWithBoard1Run() {
+		s1.Hand.clear();
+		s1.Hand.add(B1);
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		ArrayList<Tile> possibleMoves = new ArrayList<Tile>();
+		fakeMove.add(B2);
+		fakeMove.add(B3);
+		fakeMove.add(B4);
+		table.Board.clear();
+		table.Board.add(fakeMove);
+		
+		possibleMoves.add(B1);
+		
+		s1.turn();
+		assertEquals(table.Board.get(0).get(0), possibleMoves.get(0));
+	}
+	
 	Table table = new Table();
 	Player s1 = new Strategy1(table, "S1");
 	
