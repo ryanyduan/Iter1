@@ -24,7 +24,7 @@ public class TestStrategy2 extends TestCase {
 	
 	public void testPlay1Tile() {
 		s1.is30 = true;
-		
+		s2.is30 = true;
 		s2.Hand.clear();
 		s2.Hand.add(B11);
 		s2.Hand.add(G11);
@@ -58,6 +58,6 @@ public class TestStrategy2 extends TestCase {
 	Tile O11 = new Tile('O',11);
 	Tile G1 = new Tile('G',1);
 	Tile G2 = new Tile('G',2);
-	Tile G3 = new Tile('G','3');
+	Tile G3 = new Tile('G',3);
 	Tile G4 = new Tile('G',4);
 }
