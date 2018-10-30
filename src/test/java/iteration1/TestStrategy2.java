@@ -45,7 +45,16 @@ public class TestStrategy2 extends TestCase {
 		newBoard.add(G3);
 		newBoard.add(G4);
 		
+		ArrayList<Tile> nextMove = new ArrayList<Tile>();
+		nextMove.add(B11);
+		nextMove.add(G11);
+		nextMove.add(O11);
+		s1.Hand.clear();
+		
 		assertEquals(table.Board.get(0), newBoard);
+		
+		s2.turn();
+		assertEquals(table.Board.get(1), nextMove);
 		
 	}
 	

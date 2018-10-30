@@ -94,7 +94,6 @@ public class Strategy2 extends Player {
 					}
 					
 					if (!possibleTiles.isEmpty()) {
-						System.out.println("HEY!");
 						tableTileIndex = (int) possibleTiles.keySet().toArray()[0];
 						optimalMoves.clear();
 						optimalMoves.add(possibleTiles.get(0));
