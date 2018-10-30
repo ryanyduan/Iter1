@@ -59,7 +59,6 @@ public class Strategy2 extends Player {
 				else {
 					if (condition && table.s2Condition()) optimalMove();
 					else {
-						System.out.println("yo");
 						emptyMessage();
 						over = true;
 						return false;
