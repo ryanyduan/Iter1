@@ -119,7 +119,7 @@ public class Table {
 		return false;
 	}
 	
-		public boolean isRun(List<Tile> list) {
+	public boolean isRun(List<Tile> list) {
 		
 		//	this method checks if an existing run is still a run even after taking out a certain tile
 		

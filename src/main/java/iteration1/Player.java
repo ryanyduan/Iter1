@@ -213,32 +213,19 @@ public abstract class Player extends Observer {
 			
 			// if there are no runs nor sets, then try to play individual tiles
 			if (optimalLength == 0) {
-
+				tableTileIndex = 0;
 				for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 					Entry<Integer, ArrayList<Tile>> choice = it.next();
-					ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
-					for (Tile t: valueCopy) {
-						boolean in = false;
-						for (Tile handTile: this.Hand) {
-							if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
-								in = true;
-								possibleTiles.get(choice.getKey()).remove(t);
-								possibleTiles.get(choice.getKey()).add(handTile);
-								break;
-							}
-						}
-						if (!in) {
-							possibleTiles.get(choice.getKey()).remove(t);
-						}
+					if (!choice.getValue().isEmpty()) {
+						tableTileIndex = choice.getKey();
+						break;
 					}
+					tableTileIndex++;
 				}
 				
-				if (!possibleTiles.isEmpty()) {
-					tableTileIndex = (int) possibleTiles.keySet().toArray()[0];
-					optimalMoves.clear();
-					optimalMoves.add(possibleTiles.get(0));
+				optimalMoves.clear();
+				optimalMoves.add(possibleTiles.get(tableTileIndex));
 				}
-			}
 			
 			executeMove();
 	}

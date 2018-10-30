@@ -2,6 +2,7 @@ package iteration1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 public class Strategy1 extends Player {
 
@@ -27,11 +28,41 @@ public class Strategy1 extends Player {
 			sets = this.findSets();
 			possibleTiles = this.table.getPossibleTiles();
 			
-			if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+				for (Tile t: valueCopy) {
+					boolean in = false;
+					for (Tile handTile: this.Hand) {
+						if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+							in = true;
+							possibleTiles.get(choice.getKey()).remove(t);
+							possibleTiles.get(choice.getKey()).add(handTile);
+							break;
+						}
+					}
+					if (!in) {
+						possibleTiles.get(choice.getKey()).remove(t);
+					}
+				}
+			}
+			
+			boolean check = false;
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				if (!choice.getValue().isEmpty()) {
+					check = true;
+					break;
+				}
+			}
+			
+			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
 				over = true;
 				return false;
 			}
+			
+			System.out.println(possibleTiles);
 			
 			if (!this.is30) {
 				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
@@ -48,7 +79,7 @@ public class Strategy1 extends Player {
 					}
 				}
 				
-				if (runs.isEmpty() && sets.isEmpty()) {
+				if (runs.isEmpty() && sets.isEmpty() && !check) {
 					emptyMessage();
 					over = true;
 					return false;
@@ -63,6 +94,7 @@ public class Strategy1 extends Player {
 			
 			// If Player has already broken 30, let them play their optimalMove
 			else {
+				System.out.println("P1 HERE??");
 				optimalMove();
 			}
 				

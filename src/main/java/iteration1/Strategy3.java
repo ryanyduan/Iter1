@@ -25,12 +25,41 @@ public class Strategy3 extends Player {
 			sets = this.findSets();
 			possibleTiles = this.table.getPossibleTiles();
 			
+			
 			if (this.table.getState() <= this.Hand.size()-3) {
 				condition=true;
 			}
 			else condition = false;
 			
-			if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+				for (Tile t: valueCopy) {
+					boolean in = false;
+					for (Tile handTile: this.Hand) {
+						if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+							in = true;
+							possibleTiles.get(choice.getKey()).remove(t);
+							possibleTiles.get(choice.getKey()).add(handTile);
+							break;
+						}
+					}
+					if (!in) {
+						possibleTiles.get(choice.getKey()).remove(t);
+					}
+				}
+			}
+			
+			boolean check = false;
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				if (!choice.getValue().isEmpty()) {
+					check = true;
+					break;
+				}
+			}
+			
+			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
 				over = true;
 				return false;
@@ -51,62 +80,20 @@ public class Strategy3 extends Player {
 					}
 				}
 				
-				if (runs.isEmpty() && sets.isEmpty()) {
+				if (runs.isEmpty() && sets.isEmpty() && !check) {
 					emptyMessage();
 					over = true;
 					return false;
 				}
-				
-				else {
-					if (condition) optimalMove();
-					else {
-						emptyMessage();
-						over = true;
-						return false;
-					}
-				}
+				//Strategy 3 plays its 30 as soon as it can
+				optimalMove();
 			}
 			
 			else {
-				if (condition) optimalMove();
-				
-				else if (!possibleTiles.isEmpty()) {
-					
-					optimalMoves = new ArrayList<ArrayList<Tile>>();
-					for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
-						Entry<Integer, ArrayList<Tile>> choice = it.next();
-						ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
-						for (Tile t: valueCopy) {
-							boolean in = false;
-							for (Tile handTile: this.Hand) {
-								if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
-									in = true;
-									possibleTiles.get(choice.getKey()).remove(t);
-									possibleTiles.get(choice.getKey()).add(handTile);
-									break;
-								}
-							}
-							if (!in) {
-								possibleTiles.get(choice.getKey()).remove(t);
-							}
-						}
-					}
-					
-					if (!possibleTiles.isEmpty()) {
-						tableTileIndex = (int) possibleTiles.keySet().toArray()[0];
-						optimalMoves.clear();
-						optimalMoves.add(possibleTiles.get(0));
-						executeMove();
-					}
-					
-					//this is if possibleTiles from subject don't match any tiles in your hand
-					else {
-						emptyMessage();
-						over = true;
-						return false;
-					}
-					
+				if (condition) {
+					optimalMove();
 				}
+				
 				else {
 					emptyMessage();
 					over = true;
