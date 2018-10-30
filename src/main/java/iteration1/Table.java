@@ -112,6 +112,13 @@ public class Table {
 	      observers.add(observer);	
 	}
 	
+	public boolean s2Condition() {
+		for (Observer o: this.observers) {
+			if (o.is30) return true;
+		}
+		return false;
+	}
+	
 		public boolean isRun(List<Tile> list) {
 		
 		//	this method checks if an existing run is still a run even after taking out a certain tile
