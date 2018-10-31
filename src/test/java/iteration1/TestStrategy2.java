@@ -59,6 +59,7 @@ public class TestStrategy2 extends TestCase {
 	}
 	
 	
+	
 	Table table = new Table();
 	Strategy1 s1 = new Strategy1(table, "strategy1"); 
 	Strategy2 s2 = new Strategy2(table, "Strategy 2");

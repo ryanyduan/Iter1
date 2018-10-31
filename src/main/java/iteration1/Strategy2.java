@@ -30,7 +30,35 @@ public class Strategy2 extends Player {
 			}
 			else condition = false;
 			
-			if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+				for (Tile t: valueCopy) {
+					boolean in = false;
+					for (Tile handTile: this.Hand) {
+						if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+							in = true;
+							possibleTiles.get(choice.getKey()).remove(t);
+							possibleTiles.get(choice.getKey()).add(handTile);
+							break;
+						}
+					}
+					if (!in) {
+						possibleTiles.get(choice.getKey()).remove(t);
+					}
+				}
+			}
+			
+			boolean check = false;
+			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+				Entry<Integer, ArrayList<Tile>> choice = it.next();
+				if (!choice.getValue().isEmpty()) {
+					check = true;
+					break;
+				}
+			}
+			
+			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
 				over = true;
 				return false;
@@ -71,44 +99,22 @@ public class Strategy2 extends Player {
 				if (condition) optimalMove();
 				
 				//this else if is the condition that strategy2 should only play with existing tiles on the board
-//				else if (!possibleTiles.isEmpty()) {
-//					
-//					optimalMoves = new ArrayList<ArrayList<Tile>>();
-//					for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
-//						Entry<Integer, ArrayList<Tile>> choice = it.next();
-//						ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
-//						for (Tile t: valueCopy) {
-//							boolean in = false;
-//							for (Tile handTile: this.Hand) {
-//								if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
-//									in = true;
-//									possibleTiles.get(choice.getKey()).remove(t);
-//									possibleTiles.get(choice.getKey()).add(handTile);
-//									break;
-//								}
-//							}
-//							if (!in) {
-//								possibleTiles.get(choice.getKey()).remove(t);
-//							}
-//						}
-//					}
-//					
-//					if (!possibleTiles.isEmpty()) {
-//			
-//						tableTileIndex = (int) possibleTiles.keySet().toArray()[0];
-//						optimalMoves.clear();
-//						optimalMoves.add(possibleTiles.get(0));
-//						executeMove();
-//					}
-//					
-//					//this is if possibleTiles from subject don't match any tiles in your hand
-//					else {
-//						emptyMessage();
-//						over = true;
-//						return false;
-//					}
-//					
-//				}
+				else if (check) {
+					optimalMoves = new ArrayList<ArrayList<Tile>>();
+					tableTileIndex = 0;
+					for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+						Entry<Integer, ArrayList<Tile>> choice = it.next();
+						if (!choice.getValue().isEmpty()) {
+							tableTileIndex = choice.getKey();
+							break;
+						}
+						tableTileIndex++;
+					}
+					
+					optimalMoves.add(possibleTiles.get(tableTileIndex));
+					executeMove();
+					}
+					
 				else {
 					emptyMessage();
 					over = true;

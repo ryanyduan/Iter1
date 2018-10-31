@@ -62,7 +62,6 @@ public class Strategy1 extends Player {
 				return false;
 			}
 			
-			System.out.println(possibleTiles);
 			
 			if (!this.is30) {
 				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
@@ -94,7 +93,6 @@ public class Strategy1 extends Player {
 			
 			// If Player has already broken 30, let them play their optimalMove
 			else {
-				System.out.println("P1 HERE??");
 				optimalMove();
 			}
 				
