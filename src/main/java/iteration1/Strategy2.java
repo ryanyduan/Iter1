@@ -24,12 +24,7 @@ public class Strategy2 extends Player {
 			runs = this.findRuns();
 			sets = this.findSets();
 			possibleTiles = this.table.getPossibleTiles();
-			
-			if (this.table.getState() <= this.Hand.size()-3) {
-				condition=true;
-			}
-			else condition = false;
-			
+
 			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 				Entry<Integer, ArrayList<Tile>> choice = it.next();
 				ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
@@ -86,7 +81,7 @@ public class Strategy2 extends Player {
 				}
 				
 				else {
-					if (condition && table.s2Condition()) optimalMove();
+					if (table.s2Condition()) optimalMove();
 					else {
 						emptyMessage();
 						over = true;
@@ -96,9 +91,11 @@ public class Strategy2 extends Player {
 			}
 			
 			else {
-				if (condition) optimalMove();
 				
-				//this else if is the condition that strategy2 should only play with existing tiles on the board
+				//if Strategy2 can't play any singles on tiles already on the board, play everything it can
+				if (!check) optimalMove();
+				
+				// else if Strategy2 can play singles, just play those
 				else if (check) {
 					optimalMoves = new ArrayList<ArrayList<Tile>>();
 					tableTileIndex = 0;

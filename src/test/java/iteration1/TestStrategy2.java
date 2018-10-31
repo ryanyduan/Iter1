@@ -58,6 +58,31 @@ public class TestStrategy2 extends TestCase {
 		
 	}
 	
+	public void testHarderTest() {
+		s2.Hand.clear();
+		s2.Hand.add(G4);
+		s2.Hand.add(B11);
+		s2.Hand.add(G11);
+		s2.Hand.add(O11);
+		
+		ArrayList<Tile> newBoard = new ArrayList<Tile>();
+		newBoard.add(G1);
+		newBoard.add(G2);
+		newBoard.add(G3);
+		
+		table.Board.add(newBoard);
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		fakeMove.add(B11);
+		fakeMove.add(G11);
+		fakeMove.add(O11);
+		s2.turn();
+		assertNotSame(table.Board.get(0),fakeMove );
+		s1.is30 = true;
+		s2.turn();
+		assertEquals(table.Board.get(1),fakeMove );
+		
+	}
+	
 	
 	
 	Table table = new Table();
