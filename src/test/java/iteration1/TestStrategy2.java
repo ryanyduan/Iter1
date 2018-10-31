@@ -1,6 +1,7 @@
 package iteration1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import junit.framework.TestCase;
 
@@ -81,6 +82,41 @@ public class TestStrategy2 extends TestCase {
 		s2.turn();
 		assertEquals(table.Board.get(1),fakeMove );
 		
+		s2.Hand.add(O7);
+		s2.Hand.add(G7);
+		s2.Hand.add(R7);
+		s2.Hand.add(R11);
+		s2.Hand.add(R12);
+		s2.Hand.add(R13);
+		Collections.sort(s2.Hand);
+		s2.turn();
+		ArrayList<Tile> fakeMove2 = new ArrayList<Tile>();
+		fakeMove2.add(G1);
+		fakeMove2.add(G2);
+		fakeMove2.add(G3);
+		fakeMove2.add(G4);
+		assertEquals(table.Board.get(0), fakeMove2);
+		
+		s2.Hand.add(R2);
+		Collections.sort(s2.Hand);
+		
+		ArrayList<Tile> fakeMove3 = new ArrayList<Tile>();
+		fakeMove3.add(B11);
+		fakeMove3.add(G11);
+		fakeMove3.add(O11);
+		fakeMove3.add(R11);
+		s2.turn();
+		assertEquals(table.Board.get(1), fakeMove3);
+		
+		ArrayList<Tile> fakeMove4 = new ArrayList<Tile>();
+		fakeMove4.add(G1);
+		fakeMove4.add(G2);
+		fakeMove4.add(G3);
+		fakeMove4.add(G4);
+		s2.turn();
+		assertEquals(table.Board.get(0), fakeMove4);
+		
+		
 	}
 	
 	
@@ -95,4 +131,11 @@ public class TestStrategy2 extends TestCase {
 	Tile G2 = new Tile('G',2);
 	Tile G3 = new Tile('G',3);
 	Tile G4 = new Tile('G',4);
+	Tile R2 = new Tile('R',2);
+	Tile O7 = new Tile('O',7);
+	Tile G7 = new Tile('G',7);
+	Tile R7 = new Tile('R',7);
+	Tile R11 = new Tile('R',11);
+	Tile R12 = new Tile('R',12);
+	Tile R13 = new Tile('R',13);
 }
