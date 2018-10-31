@@ -36,12 +36,16 @@ public class Rummikub {
 			currentPlayer = players[counter%4];
 			
 			while (currentPlayer.turn()) { //this line will also execute the player's turn
-				if (currentPlayer.Hand.isEmpty()) {
-					System.out.println(currentPlayer.getName() + " is the winner!");
-					win = true;
-					break;
-				}
 			}
+			
+			players[2].Hand.clear();
+			
+			if (currentPlayer.Hand.isEmpty()) {
+				System.out.println(currentPlayer.getName() + " is the winner!");
+				win = true;
+				break;
+			}
+			else System.out.println(currentPlayer.Hand.size());
 			
 			counter++; //next player's turn
 			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && players[3].checkTurn() && table.Deck.isEmpty()) {
