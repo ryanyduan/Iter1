@@ -51,7 +51,16 @@ public class Human extends Player {
 			}
 		}
 		
-		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+		boolean check = false;
+		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+			Entry<Integer, ArrayList<Tile>> choice = it.next();
+			if (!choice.getValue().isEmpty()) {
+				check = true;
+				break;
+			}
+		}
+		
+		if (runs.isEmpty() && sets.isEmpty() && !check) {
 			emptyMessage();
 			return false;
 		}

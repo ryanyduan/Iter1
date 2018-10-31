@@ -338,6 +338,7 @@ public abstract class Player extends Observer {
 	}
 	
 	public boolean checkTurn() {
+		
 		runs = this.findRuns();
 		sets = this.findSets();
 		possibleTiles = this.table.getPossibleTiles();
@@ -351,7 +352,6 @@ public abstract class Player extends Observer {
 					if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
 						in = true;
 						possibleTiles.get(choice.getKey()).remove(t);
-						possibleTiles.get(choice.getKey()).add(handTile);
 						break;
 					}
 				}
@@ -361,7 +361,36 @@ public abstract class Player extends Observer {
 			}
 		}
 		
-		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+		boolean check = false;
+		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+			Entry<Integer, ArrayList<Tile>> choice = it.next();
+			if (!choice.getValue().isEmpty()) {
+				check = true;
+				break;
+			}
+		}
+		
+		if (!this.is30) {
+			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> run = it.next();
+				if (value(run) < 30) {
+					it.remove();
+				}
+			}
+			
+			for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
+				ArrayList<Tile> set = it.next();
+				if (value(set) < 30) {
+					it.remove();
+				}
+			}
+			
+			if (runs.isEmpty() && sets.isEmpty()) {
+				return true;
+			}
+		}
+		
+		if (runs.isEmpty() && sets.isEmpty() && !check) {
 			return true;
 		}
 		
