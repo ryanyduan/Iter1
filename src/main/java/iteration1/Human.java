@@ -136,6 +136,15 @@ public class Human extends Player {
 			t.justPlayed = true;
 		}
 		
+		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
+			Tile toRemove = tiles.next();
+	
+			if (played.contains(toRemove)) {
+				tiles.remove();
+			}
+		}
+		
+		
 		if (manualChoice != -1) {
 			if (played.get(0).getRank() < table.Board.get(manualChoice).get(0).getRank()) {
 				table.Board.get(manualChoice).add(0, played.get(0));
@@ -146,19 +155,13 @@ public class Human extends Player {
 			
 			if (played.size() == 2) {
 				table.Board.get(manualChoice).add(played.get(1));
+				table.Board.get(manualChoice).add(0, played.get(0));
 			}
 		}
 		
 		else table.Board.add(played);
 		
 
-		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
-			Tile toRemove = tiles.next();
-	
-			if (played.contains(toRemove)) {
-				tiles.remove();
-			}
-		}
 		
 		this.is30 = true;
 		
@@ -167,6 +170,12 @@ public class Human extends Player {
 		table.displayBoard();
 		for (Tile t: played) {
 			t.justPlayed = false;
+		}
+		
+		if (played.size() == 1) played.remove(0).justPlayed = false;
+		if (played.size() == 2) {
+			played.remove(0).justPlayed = false;
+			played.remove(0).justPlayed = false;
 		}
 		
 		over = false;

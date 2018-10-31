@@ -244,15 +244,6 @@ public abstract class Player extends Observer {
 		ArrayList<Tile> tempPlayed = optimalMoves.get(0);
 		System.out.println(this.getName() + " plays: " + optimalMoves.get(0));
 		
-		if (optimalMoves.get(0).size() == 1) {
-			if (optimalMoves.get(0).get(0).getRank() < table.Board.get(tableTileIndex).get(0).getRank()){
-				this.table.Board.get(tableTileIndex).add(0, optimalMoves.remove(0).remove(0));
-			}
-			else this.table.Board.get(tableTileIndex).add(optimalMoves.remove(0).remove(0));
-		}
-		
-		else this.table.Board.add(optimalMoves.remove(0));
-		
 		for (Iterator<Tile> tiles = this.Hand.iterator(); tiles.hasNext();) {
 			Tile toRemove = tiles.next();
 			if (tempPlayed.contains(toRemove)) {
@@ -260,11 +251,31 @@ public abstract class Player extends Observer {
 			}
 		}
 		
+		if (optimalMoves.get(0).size() == 1) {
+			if (optimalMoves.get(0).get(0).getRank() < table.Board.get(tableTileIndex).get(0).getRank()){
+				this.table.Board.get(tableTileIndex).add(0, optimalMoves.get(0).get(0));
+			}
+			else this.table.Board.get(tableTileIndex).add(optimalMoves.get(0).get(0));
+		}
+		
+		else if (optimalMoves.get(0).size() == 2) {
+			this.table.Board.get(tableTileIndex).add(0, optimalMoves.get(0).get(0));
+			this.table.Board.get(tableTileIndex).add(optimalMoves.get(0).get(1));
+		}
+		
+		else this.table.Board.add(optimalMoves.remove(0));
+		
 		Collections.sort(this.Hand);
 		this.displayHand();
 		table.displayBoard();
 		for (Tile t: tempPlayed) {
 			t.justPlayed = false;
+		}
+		
+		if (tempPlayed.size() == 1) optimalMoves.remove(0).remove(0).justPlayed = false;
+		else if(tempPlayed.size() == 2) {
+			optimalMoves.get(0).remove(0).justPlayed = false;
+			optimalMoves.remove(0).remove(0).justPlayed = false;
 		}
 		
 		this.is30 = true;

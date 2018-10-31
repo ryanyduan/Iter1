@@ -27,6 +27,14 @@ public class TestStrategy3 extends TestCase {
 		assertFalse(s3.condition);
 	}
 	
+	public void testTBD() {
+		s3.Hand.clear();
+		
+		s3.Hand.add(B1);
+		
+		assertTrue(s3.Hand.contains(B1));
+		
+	}
 	Strategy3 s3 = new Strategy3(table, "S3");
 	
 	Tile B1 = new Tile('B',1);
