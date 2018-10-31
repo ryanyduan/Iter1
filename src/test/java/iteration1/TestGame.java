@@ -1,5 +1,7 @@
 package iteration1;
 
+import java.util.Collections;
+
 import junit.framework.TestCase;
 
 public class TestGame extends TestCase {
@@ -40,7 +42,18 @@ public class TestGame extends TestCase {
 			over = true;
 		}
 		assertTrue(over);
+		s1.is30 = true;
+		over = false;
+		s1.Hand.add(B11);
+		s1.Hand.add(G11);
+		s1.Hand.add(O11);
+		Collections.sort(s1.Hand);
 		
+		if (human.checkTurn() && s1.checkTurn() && s2.checkTurn() && s3.checkTurn()) {
+			over = true;
+		}
+		
+		assertFalse(over);
 	}
 	
 	Tile B11 = new Tile('B',11);
