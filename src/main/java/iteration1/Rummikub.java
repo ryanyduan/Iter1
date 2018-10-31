@@ -44,7 +44,7 @@ public class Rummikub {
 			}
 			
 			counter++; //next player's turn
-			if (players[0].over && players[1].over && players[2].over && players[3].over && table.Deck.isEmpty()) {
+			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && players[3].checkTurn() && table.Deck.isEmpty()) {
 				System.out.println("No cards left and no moves left for any player to play.  Game over with no winner.");
 				win = true;
 				break;

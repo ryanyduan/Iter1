@@ -53,7 +53,6 @@ public class Human extends Player {
 		
 		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
 			emptyMessage();
-			over = true;
 			return false;
 		}
 		
@@ -115,7 +114,6 @@ public class Human extends Player {
 		
 		else {
 			emptyMessage();
-			over = true;
 			return false;
 		}
 		
@@ -178,7 +176,6 @@ public class Human extends Player {
 			played.remove(0).justPlayed = false;
 		}
 		
-		over = false;
 	}	
 	
 	public void printMap(HashMap<Integer, ArrayList<Tile>> map) {

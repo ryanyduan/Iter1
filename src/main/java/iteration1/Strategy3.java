@@ -61,7 +61,6 @@ public class Strategy3 extends Player {
 			
 			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
-				over = true;
 				return false;
 			}
 			
@@ -82,7 +81,6 @@ public class Strategy3 extends Player {
 				
 				if (runs.isEmpty() && sets.isEmpty() && !check) {
 					emptyMessage();
-					over = true;
 					return false;
 				}
 				//Strategy 3 plays its 30 as soon as it can
@@ -96,7 +94,6 @@ public class Strategy3 extends Player {
 				
 				else {
 					emptyMessage();
-					over = true;
 					return false;
 				}
 			}

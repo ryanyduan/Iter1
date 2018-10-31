@@ -58,7 +58,6 @@ public class Strategy1 extends Player {
 			
 			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
-				over = true;
 				return false;
 			}
 			
@@ -80,7 +79,6 @@ public class Strategy1 extends Player {
 				
 				if (runs.isEmpty() && sets.isEmpty() && !check) {
 					emptyMessage();
-					over = true;
 					return false;
 				}
 				

@@ -19,7 +19,6 @@ public abstract class Player extends Observer {
 	public ArrayList<ArrayList<Tile>> possibleRuns;
 	public int possibleRunsLength;
 	public int lowestTilesInHand;
-	public boolean over = false;
 	public int tableTileIndex = 0;
 
 	public Player(Table table, String name) {
@@ -279,7 +278,6 @@ public abstract class Player extends Observer {
 		}
 		
 		this.is30 = true;
-		over = false;
 	}
 	
 	public void emptyMessage() {

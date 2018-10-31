@@ -55,7 +55,6 @@ public class Strategy2 extends Player {
 			
 			if (runs.isEmpty() && sets.isEmpty() && !check) {
 				emptyMessage();
-				over = true;
 				return false;
 			}
 			
@@ -76,7 +75,6 @@ public class Strategy2 extends Player {
 				
 				if (runs.isEmpty() && sets.isEmpty()) {
 					emptyMessage();
-					over = true;
 					return false;
 				}
 				
@@ -84,7 +82,6 @@ public class Strategy2 extends Player {
 					if (table.s2Condition()) optimalMove();
 					else {
 						emptyMessage();
-						over = true;
 						return false;
 					}
 				}
@@ -114,7 +111,6 @@ public class Strategy2 extends Player {
 					
 				else {
 					emptyMessage();
-					over = true;
 					return false;
 				}
 			}
