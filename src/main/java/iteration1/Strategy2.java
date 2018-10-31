@@ -13,6 +13,8 @@ public class Strategy2 extends Player {
 	@Override
 	public boolean turn() {
 		
+		System.out.println(this.getName() + "'s turn!");
+		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
 			executeMove();
 		}

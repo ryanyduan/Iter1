@@ -1,30 +1,31 @@
 package iteration1;
 
+import java.io.IOException;
 import java.util.Collections;
 
 import junit.framework.TestCase;
 
 public class TestGame extends TestCase {
 	
-	public void testInitialHand() {
+	public void testInitialHand() throws IOException {
 		Rummikub.main(null);
 		//this is 13 because my game plays right after and it'll have played 1 card by then
 		assertEquals(14, Rummikub.currentPlayer.Hand.size());
 	}
 	
-	public void testSizeDeck() {
+	public void testSizeDeck() throws IOException {
 		Rummikub.main(null);
 		assertEquals(104, Rummikub.table.Deck.size());
 	}
 	
-	public void testGameEnd() {
+	public void testGameEnd() throws IOException {
 		
 		Rummikub.main(null);
 		
 		assertEquals(true, Rummikub.win);
 	}
 	
-	public void testDeckEmpty() {
+	public void testDeckEmpty() throws IOException {
 		Rummikub.main(null);
 		
 	}

@@ -13,6 +13,8 @@ public class Strategy1 extends Player {
 	@Override
 	public boolean turn() {
 		
+		System.out.println(this.getName() + "'s turn!");
+		
 		// If player has previously calculated optimalMoves, play those moves
 		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {

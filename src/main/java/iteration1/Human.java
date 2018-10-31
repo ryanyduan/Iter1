@@ -21,6 +21,8 @@ public class Human extends Player {
 	@Override
 	public boolean turn() {
 		
+		System.out.println(this.getName() + "'s turn!");
+		
 		manualChoice = -1;
 		
 		//Finds all melds.  If no melds, draw a card and end turn.
