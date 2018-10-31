@@ -6,8 +6,6 @@ import java.util.Map.Entry;
 
 public class Strategy2 extends Player {
 	
-	public boolean condition = false;
-
 	public Strategy2(Table table, String name) {
 		super(table, name);
 	}

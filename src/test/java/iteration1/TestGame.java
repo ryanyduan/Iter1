@@ -7,10 +7,13 @@ import junit.framework.TestCase;
 public class TestGame extends TestCase {
 	
 	public void testInitialHand() {
+		Rummikub.main(null);
+		//this is 13 because my game plays right after and it'll have played 1 card by then
 		assertEquals(14, Rummikub.currentPlayer.Hand.size());
 	}
 	
 	public void testSizeDeck() {
+		Rummikub.main(null);
 		assertEquals(104, Rummikub.table.Deck.size());
 	}
 	

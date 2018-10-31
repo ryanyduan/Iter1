@@ -13,7 +13,7 @@ public class TestTable extends TestCase {
 		newMeld.add(B2);
 		newMeld.add(B3);
 		table.Board.add(newMeld);
-		assertEquals("{[B1 , B2 , B3 ]}", table.displayBoard());
+		assertEquals("Board: {[B1 , B2 , B3 ]}", table.displayBoard());
 	}
 	
 	public void testDisplayTable2Melds() {
@@ -27,7 +27,7 @@ public class TestTable extends TestCase {
 		newMeld2.add(B3);
 		table.Board.add(newMeld2);
 		
-		assertEquals("{[B1 , B2 , B3 ]}{[B1 , B2 , B3 ]}", table.displayBoard());
+		assertEquals("Board: {[B1 , B2 , B3 ]}{[B1 , B2 , B3 ]}", table.displayBoard());
 		
 	}
 	
@@ -40,7 +40,7 @@ public class TestTable extends TestCase {
 		newMeld.add(B3);
 		B3.isJustPlayed();
 		table.Board.add(newMeld);
-		assertEquals("{[*B1 , *B2 , *B3 ]}", table.displayBoard());
+		assertEquals("Board: {[*B1 , *B2 , *B3 ]}", table.displayBoard());
 	}
 	
 	public void testDisplay2MeldsWithStars() {
@@ -52,7 +52,7 @@ public class TestTable extends TestCase {
 		newMeld.add(B3);
 		B3.isJustPlayed();
 		table.Board.add(newMeld);
-		assertEquals("{[*B1 , *B2 , *B3 ]}", table.displayBoard());
+		assertEquals("Board: {[*B1 , *B2 , *B3 ]}", table.displayBoard());
 		
 		newMeld2.add(G4);
 		newMeld2.add(O4);
@@ -64,7 +64,7 @@ public class TestTable extends TestCase {
 		for (Tile tile: newMeld2) {
 			tile.isJustPlayed();
 		}
-		assertEquals("{[B1 , B2 , B3 ]}{[*G4 , *O4 , *R4 ]}", table.displayBoard());
+		assertEquals("Board: {[B1 , B2 , B3 ]}{[*G4 , *O4 , *R4 ]}", table.displayBoard());
 	}
 	
 	ArrayList<Tile> newMeld = new ArrayList<Tile>();
