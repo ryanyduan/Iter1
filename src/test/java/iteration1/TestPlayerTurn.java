@@ -232,11 +232,28 @@ public class TestPlayerTurn extends TestCase {
 		assertFalse(human.turn());
 	}
 	
+	public void test30NEW() {
+		Human human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.add(B5);
+		human.Hand.add(B6);
+		human.Hand.add(B7);
+		human.Hand.add(B4);
+		human.Hand.add(G4);
+		human.Hand.add(O4);
+		Collections.sort(human.Hand);
+		human.turn();
+		assertTrue(human.is30);
+		
+	}
 	
 	Table table = new Table();
 	Tile B1 = new Tile('B',1);
 	Tile B2 = new Tile('B',2);
 	Tile B3 = new Tile('B',3);
+	Tile B5 = new Tile('B',5);
+	Tile B6 = new Tile('B','6');
+	Tile B7 = new Tile('B','7');
 	
 	Tile R4 = new Tile('R',4);
 	Tile G4 = new Tile('G',4);

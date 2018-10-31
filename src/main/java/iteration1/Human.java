@@ -152,7 +152,7 @@ public class Human extends Player {
 				tiles.remove();
 			}
 		}
-		
+		System.out.println("Human plays: " + played);
 		
 		if (manualChoice != -1) {
 			if (played.get(0).getRank() < table.Board.get(manualChoice).get(0).getRank()) {
