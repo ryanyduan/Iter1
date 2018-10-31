@@ -17,7 +17,7 @@ public class Human extends Player {
 	public Human(Table table, String name) {
 		super(table, name);
 	}
-
+	
 	@Override
 	public boolean turn() {
 		

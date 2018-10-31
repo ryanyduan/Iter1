@@ -339,6 +339,37 @@ public abstract class Player extends Observer {
 		this.Hand.add(table.Deck.remove(0));
 	}
 	
+	public boolean checkTurn() {
+		runs = this.findRuns();
+		sets = this.findSets();
+		possibleTiles = this.table.getPossibleTiles();
+		
+		for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+			Entry<Integer, ArrayList<Tile>> choice = it.next();
+			ArrayList<Tile> valueCopy = new ArrayList<Tile>(choice.getValue());
+			for (Tile t: valueCopy) {
+				boolean in = false;
+				for (Tile handTile: this.Hand) {
+					if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
+						in = true;
+						possibleTiles.get(choice.getKey()).remove(t);
+						possibleTiles.get(choice.getKey()).add(handTile);
+						break;
+					}
+				}
+				if (!in) {
+					possibleTiles.get(choice.getKey()).remove(t);
+				}
+			}
+		}
+		
+		if (runs.isEmpty() && sets.isEmpty() && possibleTiles.isEmpty()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public String displayHand(){
 		String returnHand = this.name + "'s hand: ";
 		for (Tile t: this.Hand) {
