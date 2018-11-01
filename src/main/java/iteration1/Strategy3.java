@@ -11,6 +11,13 @@ public class Strategy3 extends Player {
 	public Strategy3(Table table, String name) {
 		super(table, name);
 	}
+	
+	public boolean s3Condition() {
+		if (this.table.getState() <= this.Hand.size()-3) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public boolean turn() {
@@ -28,10 +35,7 @@ public class Strategy3 extends Player {
 			possibleTiles = this.table.getPossibleTiles();
 			
 			
-			if (this.table.getState() <= this.Hand.size()-3) {
-				condition=true;
-			}
-			else condition = false;
+			condition = s3Condition();
 			
 			for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
 				Entry<Integer, ArrayList<Tile>> choice = it.next();

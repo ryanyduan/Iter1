@@ -41,7 +41,7 @@ public class Rummikub {
 			s3.Hand.clear();
 			
 			String content;
-			content = new String(Files.readAllBytes(Paths.get("test1.txt")));
+			content = new String(Files.readAllBytes(Paths.get("test2.txt")));
 			String[] moves = content.split(" ");
 			
 			for (int i = 0; i < moves.length; i++) {
@@ -77,18 +77,23 @@ public class Rummikub {
 					break;
 				}
 			}
-			
-//			if (currentPlayer.Hand.isEmpty()) {
-//				System.out.println(currentPlayer.getName() + " is the winner!");
-//				win = true;
-//				break;
-//			}
-			
+		
 			counter++; //next player's turn
-			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && players[3].checkTurn() && table.Deck.isEmpty()) {
+			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && players[3].checkTurn() && !s3.s3Condition() && table.Deck.isEmpty()) {
 				System.out.println("No cards left and no moves left for any player to play.  Game over with no winner.");
 				win = true;
 				break;
+			}
+			
+			else {
+				for (Player p: players) {
+					System.out.println(p.getName());
+					System.out.println(p.is30);
+					System.out.println(p.runs);
+					System.out.println(p.sets);
+				}
+				
+				System.out.println(s3.s3Condition());
 			}
 		}
 	}
