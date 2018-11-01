@@ -1,5 +1,7 @@
 package iteration1;
 
+import java.util.ArrayList;
+
 import junit.framework.TestCase;
 
 public class TestStrategy3 extends TestCase {
@@ -25,6 +27,19 @@ public class TestStrategy3 extends TestCase {
 		s3.Hand.add(B2);
 		s3.turn();
 		assertFalse(s3.condition);
+	}
+	
+	public void testNoIndividual() {
+		s3.Hand.clear();
+		ArrayList<Tile> fakeMove = new ArrayList<Tile>();
+		fakeMove.add(B1);
+		fakeMove.add(B2);
+		fakeMove.add(B3);
+		//s3.Hand.add(B4);
+		table.Board.add(fakeMove);
+		s3.is30 = true;
+		assertTrue(s3.noIndividualTiles());
+		
 	}
 	
 	Strategy3 s3 = new Strategy3(table, "S3");

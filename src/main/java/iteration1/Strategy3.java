@@ -97,7 +97,21 @@ public class Strategy3 extends Player {
 				if (condition) {
 					optimalMove();
 				}
-				
+				else if (check) {
+					optimalMoves = new ArrayList<ArrayList<Tile>>();
+					tableTileIndex = 0;
+					for (Iterator<Entry<Integer, ArrayList<Tile>>> it = possibleTiles.entrySet().iterator(); it.hasNext(); ) {
+						Entry<Integer, ArrayList<Tile>> choice = it.next();
+						if (!choice.getValue().isEmpty()) {
+							tableTileIndex = choice.getKey();
+							break;
+						}
+						tableTileIndex++;
+					}
+					
+					optimalMoves.add(possibleTiles.get(tableTileIndex));
+					executeMove();
+					}
 				else {
 					emptyMessage();
 					return false;
