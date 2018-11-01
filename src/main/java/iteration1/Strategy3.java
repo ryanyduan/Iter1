@@ -47,6 +47,7 @@ public class Strategy3 extends Player {
 	
 	public boolean s3Condition() {
 		if (this.table.getState() <= this.Hand.size()-3) {
+			System.out.println("S3 is able to play");
 			return true;
 		}
 		return false;
