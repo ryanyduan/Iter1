@@ -80,21 +80,11 @@ public class Rummikub {
 		
 			counter++; //next player's turn
 			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && 
-				s3.s3Condition() && table.Deck.isEmpty()) {
+				s3.noIndividualTiles() && s3.checkTurn() && table.Deck.isEmpty()) {
 				System.out.println("No cards left and no moves left for any player to play.  Game over with no winner.");
 				win = true;
 				break;
-			}
 			
-			else {
-				for (Player p: players) {
-					System.out.println(p.getName());
-					System.out.println(p.is30);
-					System.out.println(p.runs);
-					System.out.println(p.sets);
-				}
-				
-				System.out.println(s3.s3Condition());
 			}
 		}
 	}
