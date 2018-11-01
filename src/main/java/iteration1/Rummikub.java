@@ -80,7 +80,7 @@ public class Rummikub {
 		
 			counter++; //next player's turn
 			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && 
-				s3.noIndividualTiles() && s3.checkTurn() && table.Deck.isEmpty()) {
+				((s3.noIndividualTiles() && !s3.s3Condition()) || s3.checkTurn()) && table.Deck.isEmpty()) {
 				System.out.println("No cards left and no moves left for any player to play.  Game over with no winner.");
 				win = true;
 				break;

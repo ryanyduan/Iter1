@@ -63,9 +63,6 @@ public class Strategy1 extends Player {
 				return false;
 			}
 			
-			int toBreak = 0;
-			ArrayList<Tile> highestValue = new ArrayList<Tile>();
-			
 			if (!this.is30) {
 				
 				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
