@@ -244,7 +244,20 @@ public class TestPlayerTurn extends TestCase {
 		Collections.sort(human.Hand);
 		human.turn();
 		assertTrue(human.is30);
-		
+	}
+	
+	public void test30NEW_1_FAIL() {
+		Human human = new Human(table, "Human");
+		human.Hand.clear();
+		human.Hand.add(B5);
+		human.Hand.add(B6);
+		human.Hand.add(B7);
+		human.Hand.add(B1);
+		human.Hand.add(G1);
+		human.Hand.add(O1);
+		Collections.sort(human.Hand);
+		human.turn();
+		assertTrue(human.is30);
 	}
 	
 	Table table = new Table();
@@ -254,6 +267,8 @@ public class TestPlayerTurn extends TestCase {
 	Tile B5 = new Tile('B',5);
 	Tile B6 = new Tile('B',6);
 	Tile B7 = new Tile('B',7);
+	Tile O1 = new Tile('O',1);
+	Tile G1 = new Tile('G',1);
 	
 	Tile R4 = new Tile('R',4);
 	Tile G4 = new Tile('G',4);
