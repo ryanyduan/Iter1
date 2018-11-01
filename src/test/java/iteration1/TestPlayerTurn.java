@@ -252,8 +252,8 @@ public class TestPlayerTurn extends TestCase {
 	Tile B2 = new Tile('B',2);
 	Tile B3 = new Tile('B',3);
 	Tile B5 = new Tile('B',5);
-	Tile B6 = new Tile('B','6');
-	Tile B7 = new Tile('B','7');
+	Tile B6 = new Tile('B',6);
+	Tile B7 = new Tile('B',7);
 	
 	Tile R4 = new Tile('R',4);
 	Tile G4 = new Tile('G',4);

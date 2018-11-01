@@ -67,18 +67,32 @@ public class Human extends Player {
 			return false;
 		}
 		
+		int toBreak = 0;
+		
 		if (!this.is30) {
-			for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
-				ArrayList<Tile> run = it.next();
-				if (value(run) < 30) {
-					it.remove();
-				}
+			
+			for (ArrayList<Tile> run: this.runs) {
+				toBreak += value(run);
 			}
 			
-			for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
-				ArrayList<Tile> set = it.next();
-				if (value(set) < 30) {
-					it.remove();
+			for (ArrayList<Tile> set: this.sets) {
+				toBreak += value(set);
+			}
+			
+			if (toBreak < 30) {
+				System.out.println(toBreak);
+				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
+					ArrayList<Tile> run = it.next();
+					if (value(run) < 30) {
+						it.remove();
+					}
+				}
+				
+				for (Iterator<ArrayList<Tile>> it = sets.iterator(); it.hasNext(); ) {
+					ArrayList<Tile> set = it.next();
+					if (value(set) < 30) {
+						it.remove();
+					}
 				}
 			}
 			
