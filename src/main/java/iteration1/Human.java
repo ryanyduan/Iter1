@@ -80,7 +80,6 @@ public class Human extends Player {
 			}
 			
 			if (toBreak < 30) {
-				System.out.println(toBreak);
 				for (Iterator<ArrayList<Tile>> it = runs.iterator(); it.hasNext(); ) {
 					ArrayList<Tile> run = it.next();
 					if (value(run) < 30) {

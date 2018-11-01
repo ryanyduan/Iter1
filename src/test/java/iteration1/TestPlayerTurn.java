@@ -257,7 +257,7 @@ public class TestPlayerTurn extends TestCase {
 		human.Hand.add(O1);
 		Collections.sort(human.Hand);
 		human.turn();
-		assertTrue(human.is30);
+		assertFalse(human.is30);
 	}
 	
 	Table table = new Table();
