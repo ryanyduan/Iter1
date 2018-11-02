@@ -41,7 +41,7 @@ public class Rummikub {
 			s3.Hand.clear();
 			
 			String content;
-			content = new String(Files.readAllBytes(Paths.get("test3.txt")));
+			content = new String(Files.readAllBytes(Paths.get("test4.txt")));
 			String[] moves = content.split(" ");
 			
 			for (int i = 0; i < moves.length; i++) {

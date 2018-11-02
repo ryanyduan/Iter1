@@ -351,7 +351,6 @@ public abstract class Player extends Observer {
 				for (Tile handTile: this.Hand) {
 					if (handTile.getRank() == t.getRank() && handTile.getColour() == t.getColour()){
 						in = true;
-						possibleTiles.get(choice.getKey()).remove(t);
 						break;
 					}
 				}

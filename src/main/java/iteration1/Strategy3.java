@@ -119,7 +119,7 @@ public class Strategy3 extends Player {
 					}
 				}
 				
-				if (runs.isEmpty() && sets.isEmpty() && !check) {
+				if (runs.isEmpty() && sets.isEmpty()) {
 					emptyMessage();
 					return false;
 				}
