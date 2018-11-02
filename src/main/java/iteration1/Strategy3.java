@@ -56,6 +56,8 @@ public class Strategy3 extends Player {
 	@Override
 	public boolean turn() {
 		
+		if (this.Hand.size() == 0) return false;
+		
 		System.out.println(this.getName() + "'s turn!");
 		
 		if (!(optimalMoves == null) && !optimalMoves.isEmpty()) {
@@ -128,9 +130,19 @@ public class Strategy3 extends Player {
 			}
 			
 			else {
+				
+				if (!this.runs.isEmpty() && Hand.size() - this.runs.get(0).size() == 0) {
+					optimalMove();
+				}
+				
+				else if (!this.sets.isEmpty() && Hand.size() - this.sets.get(0).size() == 0) {
+					optimalMove();
+				}
+				
 				if (condition) {
 					optimalMove();
 				}
+				
 				else if (check) {
 					optimalMoves = new ArrayList<ArrayList<Tile>>();
 					tableTileIndex = 0;
@@ -146,6 +158,7 @@ public class Strategy3 extends Player {
 					optimalMoves.add(possibleTiles.get(tableTileIndex));
 					executeMove();
 					}
+				
 				else {
 					emptyMessage();
 					return false;

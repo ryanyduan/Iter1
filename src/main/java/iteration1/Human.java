@@ -21,6 +21,8 @@ public class Human extends Player {
 	@Override
 	public boolean turn() {
 		
+		if (this.Hand.size() == 0) return false;
+		
 		System.out.println(this.getName() + "'s turn!");
 		
 		manualChoice = -1;
