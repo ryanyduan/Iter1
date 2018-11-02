@@ -41,7 +41,7 @@ public class Rummikub {
 			s3.Hand.clear();
 			
 			String content;
-			content = new String(Files.readAllBytes(Paths.get("test2.txt")));
+			content = new String(Files.readAllBytes(Paths.get("test3.txt")));
 			String[] moves = content.split(" ");
 			
 			for (int i = 0; i < moves.length; i++) {
@@ -77,7 +77,7 @@ public class Rummikub {
 					break;
 				}
 			}
-		
+			if (win) break;
 			counter++; //next player's turn
 			if (players[0].checkTurn() && players[1].checkTurn() && players[2].checkTurn() && 
 				((s3.noIndividualTiles() && !s3.s3Condition()) || s3.checkTurn()) && table.Deck.isEmpty()) {
