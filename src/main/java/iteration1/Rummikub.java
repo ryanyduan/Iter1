@@ -17,7 +17,7 @@ public class Rummikub {
 	public static Player[] players;
 	public static Player currentPlayer;
 	public static boolean win;
-	public static boolean TA_Test = false;
+	public static boolean TA_Test = true;
 
 	public static void main(String[] args) throws IOException {
 		
@@ -41,7 +41,7 @@ public class Rummikub {
 			s3.Hand.clear();
 			
 			String content;
-			content = new String(Files.readAllBytes(Paths.get("test6.txt")));
+			content = new String(Files.readAllBytes(Paths.get("test7.txt")));
 			String[] moves = content.split(" ");
 			
 			for (int i = 0; i < moves.length; i++) {
